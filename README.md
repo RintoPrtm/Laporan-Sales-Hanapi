@@ -1,2 +1,2 @@
 # Laporan-Sales-Hanapi
-Untuk Laporan sales Hanapi
+Simple mathematic code for personal use
