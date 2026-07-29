@@ -1,0 +1,1625 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- META TAG ANTI-CACHE BROWSER -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
+    <title>Generator Laporan Sales Online - Gerpekinaja</title>
+    
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #ef4444;
+            --primary-hover: #dc2626;
+            --primary-dark: #991b1b;
+            --primary-light: rgba(239, 68, 68, 0.15);
+            --primary-glow: rgba(239, 68, 68, 0.35);
+            
+            --accent: #22c55e;
+            --accent-dark: #15803d;
+            --accent-light: rgba(34, 197, 94, 0.15);
+            
+            --bg: #090b10;
+            --card-bg: #121620;
+            --card-border: #1e2536;
+            --input-bg: #181d2b;
+            
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #262e42;
+            
+            --shadow-red-sm: 0 4px 14px rgba(239, 68, 68, 0.18);
+            --shadow-red-md: 0 8px 24px rgba(239, 68, 68, 0.28);
+            --shadow-red-lg: 0 12px 36px rgba(220, 38, 38, 0.4);
+            
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* CUSTOM SCROLLBAR DARK */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #273046;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+
+        /* LOCK SCROLLING KETIKA BELUM VALIDASI PIN */
+        body.locked {
+            overflow: hidden !important;
+            height: 100vh !important;
+            touch-action: none;
+        }
+
+        body {
+            background-color: var(--bg);
+            background-image: 
+                radial-gradient(circle at 10% 10%, rgba(239, 68, 68, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(220, 38, 38, 0.06) 0%, transparent 45%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            padding: 16px 12px;
+            font-size: 14px;
+            line-height: 1.5;
+            transition: background-color 0.3s ease;
+        }
+
+        .container {
+            max-width: 640px;
+            margin: 0 auto;
+            padding-bottom: 40px;
+        }
+
+        /* HEADER APP */
+        header {
+            text-align: center;
+            padding: 26px 20px;
+            background: linear-gradient(135deg, #1e0a0a 0%, #3b0d0d 50%, #1a0808 100%);
+            border: 1px solid rgba(239, 68, 68, 0.35);
+            color: white;
+            border-radius: var(--radius-lg);
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px -5px rgba(239, 68, 68, 0.25), 0 0 20px rgba(220, 38, 38, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 220px;
+            height: 220px;
+            background: radial-gradient(circle, rgba(239, 68, 68, 0.25) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        header h1 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+            text-shadow: 0 2px 10px rgba(239, 68, 68, 0.5);
+            color: #ffffff;
+        }
+
+        header p {
+            font-size: 0.85rem;
+            opacity: 0.95;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            padding: 4px 14px;
+            border-radius: 20px;
+            color: #fca5a5;
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.2);
+        }
+
+        /* CARD STYLING */
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            margin-bottom: 18px;
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 0 15px rgba(239, 68, 68, 0.08);
+            border: 1px solid var(--card-border);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+
+        .card:hover {
+            border-color: rgba(239, 68, 68, 0.35);
+            box-shadow: 0 12px 35px -8px rgba(0, 0, 0, 0.6), 0 0 22px rgba(239, 68, 68, 0.18);
+        }
+
+        .card h2 {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: #fca5a5;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 12px;
+            text-shadow: 0 0 8px rgba(239, 68, 68, 0.3);
+        }
+
+        /* FORM ELEMENTS */
+        .form-group {
+            margin-bottom: 14px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            font-size: 0.825rem;
+            color: var(--text-main);
+        }
+
+        .helper-text {
+            font-size: 0.725rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 11px 14px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+            background-color: var(--input-bg);
+            color: var(--text-main);
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.25), 0 0 12px rgba(239, 68, 68, 0.3);
+            background-color: #1c2233;
+        }
+
+        .readonly-field {
+            background-color: #111520 !important;
+            font-weight: 800 !important;
+            color: #f87171 !important;
+            border-color: #2a3348 !important;
+        }
+
+        .shift-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+            letter-spacing: 0.3px;
+        }
+
+        /* STAT METRIC BOXES */
+        .stat-box-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .stat-box {
+            background: #161b29;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            padding: 12px 14px;
+            border-radius: var(--radius-sm);
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .stat-box label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 2px;
+        }
+
+        .stat-box input {
+            border: none;
+            background: transparent !important;
+            padding: 0;
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: #f87171 !important;
+            text-shadow: 0 0 8px rgba(239, 68, 68, 0.3);
+        }
+
+        /* TOGGLE SWITCH MODERN DARK */
+        .switch-container {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            background: #181e2b;
+            padding: 4px 10px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 38px;
+            height: 22px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #334155;
+            transition: .25s ease;
+            border-radius: 20px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px; width: 16px;
+            left: 3px; bottom: 3px;
+            background-color: white;
+            transition: .25s ease;
+            border-radius: 50%;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+        }
+
+        input:checked + .slider {
+            background-color: var(--primary);
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(16px);
+        }
+
+        /* BUTTONS */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 13px 18px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: var(--radius-sm);
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.25s ease;
+            box-shadow: var(--shadow-red-md);
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, #f87171 0%, var(--primary-hover) 100%);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-red-lg);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn:disabled {
+            background: #1e293b !important;
+            color: #64748b !important;
+            border-color: #334155 !important;
+            cursor: not-allowed;
+            box-shadow: none !important;
+            transform: none !important;
+            text-shadow: none !important;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #334155 0%, #1e293b 100%);
+            border: 1px solid #475569;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #475569 0%, #334155 100%);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #ef4444 0%, #991b1b 100%);
+            padding: 7px 12px;
+            font-size: 0.8rem;
+            width: auto;
+            border-radius: var(--radius-sm);
+            box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+            border: none;
+        }
+        .btn-danger:hover {
+            background: #dc2626;
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.5);
+        }
+
+        /* DYNAMIC EXPENSE ROW */
+        .expense-row {
+            display: grid;
+            grid-template-columns: 2fr 2fr auto;
+            gap: 8px;
+            margin-bottom: 10px;
+            align-items: center;
+            background: #161b28;
+            padding: 10px;
+            border-radius: var(--radius-sm);
+            border: 1px dashed var(--border);
+        }
+
+        /* OVERLAYS & MODALS */
+        #loadingOverlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(9, 11, 16, 0.85);
+            backdrop-filter: blur(12px);
+            color: white;
+            text-align: center;
+            padding-top: 45vh;
+            font-size: 1.1rem;
+            z-index: 9999;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-shadow: 0 0 10px rgba(239, 68, 68, 0.6);
+        }
+
+        /* --- SCREEN LOCK PIN OVERLAY ULTRA MODERN DARK --- */
+        #pinOverlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, rgba(30, 10, 10, 0.95) 0%, rgba(9, 11, 16, 0.98) 100%);
+            backdrop-filter: blur(20px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            padding: 20px;
+        }
+
+        .pin-box {
+            background: #131722;
+            padding: 34px 26px 30px 26px;
+            border-radius: var(--radius-xl);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(239, 68, 68, 0.25);
+            width: 100%;
+            max-width: 360px;
+            text-align: center;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .pin-icon {
+            width: 58px;
+            height: 58px;
+            background: rgba(239, 68, 68, 0.15);
+            color: #f87171;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px auto;
+            font-size: 1.6rem;
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
+        }
+
+        .pin-title {
+            color: var(--text-main);
+            font-size: 1.3rem;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            margin-bottom: 4px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .pin-subtitle {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+
+        /* PIN DOTS DISPLAY */
+        .pin-dots {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 28px;
+        }
+
+        .pin-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 2px solid #2a344a;
+            background: #181e2b;
+            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .pin-dot.filled {
+            background: var(--primary);
+            border-color: #f87171;
+            transform: scale(1.2);
+            box-shadow: 0 0 12px rgba(239, 68, 68, 0.8);
+        }
+
+        .pin-dot.error {
+            background: #ef4444;
+            border-color: #b91c1c;
+            animation: pulse-red 0.3s ease infinite alternate;
+        }
+
+        /* NUMERIC KEYPAD BUILT-IN DARK */
+        .numpad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            max-width: 280px;
+            margin: 0 auto;
+        }
+
+        .num-btn {
+            background: #181e2e;
+            border: 1px solid #2a344a;
+            border-radius: var(--radius-md);
+            height: 58px;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text-main);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            user-select: none;
+            transition: all 0.15s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .num-btn:hover {
+            background: #232a3f;
+            border-color: rgba(239, 68, 68, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(0,0,0,0.4), 0 0 10px rgba(239, 68, 68, 0.2);
+        }
+
+        .num-btn:active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: scale(0.92);
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.7);
+        }
+
+        .num-btn.action {
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--text-muted);
+            background: #131824;
+        }
+
+        .num-btn.action:hover {
+            color: #f87171;
+            background: rgba(239, 68, 68, 0.15);
+            border-color: rgba(239, 68, 68, 0.4);
+        }
+
+        /* ANIMASI GETAR (SHAKE) PADA SALAH PIN */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            15%, 45%, 75% { transform: translateX(-12px); }
+            30%, 60%, 90% { transform: translateX(12px); }
+        }
+
+        .shake {
+            animation: shake 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+            border-color: var(--primary) !important;
+            box-shadow: 0 0 35px rgba(239, 68, 68, 0.6) !important;
+        }
+
+        /* --- TOAST NOTIFICATION MODERN DARK --- */
+        #toastContainer {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 20000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 360px;
+            width: calc(100% - 40px);
+            pointer-events: none;
+        }
+
+        .toast {
+            pointer-events: auto;
+            background: rgba(18, 22, 32, 0.95);
+            backdrop-filter: blur(14px);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--primary);
+            padding: 14px 16px;
+            border-radius: var(--radius-md);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6), 0 0 15px rgba(239, 68, 68, 0.15);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            transform: translateX(120%);
+            opacity: 0;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .toast.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .toast-icon {
+            font-size: 1.25rem;
+            line-height: 1;
+            margin-top: 2px;
+        }
+
+        .toast-content {
+            flex: 1;
+        }
+
+        .toast-title {
+            font-weight: 700;
+            font-size: 0.875rem;
+            color: var(--text-main);
+            margin-bottom: 2px;
+        }
+
+        .toast-msg {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.35;
+        }
+
+        .toast-success { border-left-color: var(--accent); box-shadow: 0 10px 30px rgba(0,0,0,0.6), 0 0 15px rgba(34, 197, 94, 0.2); }
+        .toast-success .toast-icon { color: var(--accent); }
+
+        .toast-error { border-left-color: var(--primary); }
+        .toast-error .toast-icon { color: var(--primary); }
+
+        .toast-warning { border-left-color: #f59e0b; box-shadow: 0 10px 30px rgba(0,0,0,0.6), 0 0 15px rgba(245, 158, 11, 0.2); }
+        .toast-warning .toast-icon { color: #f59e0b; }
+
+        .toast-info { border-left-color: #3b82f6; box-shadow: 0 10px 30px rgba(0,0,0,0.6), 0 0 15px rgba(59, 130, 246, 0.2); }
+        .toast-info .toast-icon { color: #3b82f6; }
+
+        /* OUTPUT TERMINAL DARK */
+        #outputContainer {
+            margin-top: 20px;
+        }
+
+        textarea#output {
+            background: #090c14;
+            color: #38bdf8;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            height: 320px;
+            resize: vertical;
+            border: 1px solid #1e293b;
+            border-radius: var(--radius-md);
+            padding: 14px;
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.7), 0 0 10px rgba(56, 189, 248, 0.1);
+        }
+
+        /* COMPACT ITEM CARD GRID DARK */
+        .item-card {
+            background: #161b27;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 10px 12px;
+            margin-bottom: 8px;
+            transition: border-color 0.2s ease;
+        }
+
+        .item-card:hover {
+            border-color: rgba(239, 68, 68, 0.25);
+        }
+
+        .item-card label {
+            font-size: 0.825rem;
+            color: var(--text-main);
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        /* SYNC BANNER DARK */
+        .sync-banner {
+            background-color: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            padding: 14px;
+            border-radius: var(--radius-sm);
+            margin-bottom: 14px;
+            box-shadow: 0 0 12px rgba(34, 197, 94, 0.08);
+        }
+
+        .sync-status {
+            font-size: 0.825rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #4ade80;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+    </style>
+</head>
+<body class="locked">
+
+<!-- SYSTEM TOAST CONTAINER -->
+<div id="toastContainer"></div>
+
+<!-- SCREEN LOCK PIN UTAMA -->
+<div id="pinOverlay">
+    <div class="pin-box" id="pinCard">
+        <div class="pin-icon">🔐</div>
+        <div class="pin-title">Akses Terkunci</div>
+        <div class="pin-subtitle">Masukkan 6 Digit PIN Operasional Toko</div>
+        
+        <!-- INDIKATOR PIN DOTS -->
+        <div class="pin-dots" id="pinDots">
+            <span class="pin-dot"></span>
+            <span class="pin-dot"></span>
+            <span class="pin-dot"></span>
+            <span class="pin-dot"></span>
+            <span class="pin-dot"></span>
+            <span class="pin-dot"></span>
+        </div>
+
+        <!-- KEYPAD BUILT-IN MODERN -->
+        <div class="numpad">
+            <button type="button" class="num-btn" onclick="pressNum('1')">1</button>
+            <button type="button" class="num-btn" onclick="pressNum('2')">2</button>
+            <button type="button" class="num-btn" onclick="pressNum('3')">3</button>
+            <button type="button" class="num-btn" onclick="pressNum('4')">4</button>
+            <button type="button" class="num-btn" onclick="pressNum('5')">5</button>
+            <button type="button" class="num-btn" onclick="pressNum('6')">6</button>
+            <button type="button" class="num-btn" onclick="pressNum('7')">7</button>
+            <button type="button" class="num-btn" onclick="pressNum('8')">8</button>
+            <button type="button" class="num-btn" onclick="pressNum('9')">9</button>
+            <button type="button" class="num-btn action" onclick="clearPin()">CLEAR</button>
+            <button type="button" class="num-btn" onclick="pressNum('0')">0</button>
+            <button type="button" class="num-btn action" onclick="backspacePin()">⌫</button>
+        </div>
+    </div>
+</div>
+
+<div id="loadingOverlay">🔄 Sinkronisasi SheetDB...</div>
+
+<div class="container">
+    <header>
+        <h1>Laporan Sales Gerpekinaja</h1>
+        <p>📍 Cabang H. Hanapi - Jakarta Timur</p>
+    </header>
+
+    <!-- 1. DATA UMUM & BULANAN -->
+    <div class="card">
+        <h2>📅 Data Umum & Bulanan</h2>
+        
+        <div class="form-group">
+            <label for="tanggal">Pilih Tanggal Laporan</label>
+            <input type="date" id="tanggal" required>
+        </div>
+
+        <div class="sync-banner">
+            <span id="target_status" class="sync-status">⚡ Sistem siap. Silakan klik Load Data.</span>
+            <button type="button" id="load_btn" class="btn" style="padding: 10px; font-size: 0.85rem; width: 100%; margin-top: 0; background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%); box-shadow: 0 4px 14px rgba(34, 197, 94, 0.3);" onclick="loadDataFromSheets()">📥 Load Data Database</button>
+        </div>
+
+        <div class="form-group">
+            <label for="target_bulanan">Target Sales Bulanan (Rp)</label>
+            <div style="display: flex; gap: 8px; align-items: center;">
+                <input type="number" id="target_bulanan" placeholder="Contoh: 50000000" style="flex: 1;">
+                <button type="button" id="unlock_btn" class="btn btn-secondary" style="display: none; width: 42px; height: 42px; padding: 0; margin-top: 0; justify-content: center; align-items: center; font-size: 1.1rem; flex-shrink: 0;" onclick="toggleTargetLock()" title="Buka/Tutup Kunci Target">🔒</button>
+            </div>
+        </div>
+
+        <div class="stat-box-grid">
+            <div class="stat-box">
+                <label for="total_sales_bulanan_display">Sales s/d Hari Ini</label>
+                <span class="helper-text">*Kemarin + Hari ini</span>
+                <input type="text" id="total_sales_bulanan_display" class="readonly-field" readonly value="0">
+            </div>
+            <div class="stat-box">
+                <label for="total_cu_bulanan_display">CU s/d Hari Ini</label>
+                <span class="helper-text">*Kemarin + Hari ini</span>
+                <input type="number" id="total_cu_bulanan_display" class="readonly-field" readonly value="0">
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. DATA HARIAN -->
+    <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 16px;">
+            <h2 style="border-bottom: none; margin-bottom: 0; padding-bottom: 0;">📊 Sales & CU Harian</h2>
+            <label class="switch-container">
+                <span>Input Langsung</span>
+                <span class="switch">
+                    <input type="checkbox" id="switch_sales_direct" onchange="toggleSalesInputMode()">
+                    <span class="slider"></span>
+                </span>
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label for="target_harian">Target Sales Harian (Rp)</label>
+            <input type="number" id="target_harian" placeholder="Masukkan target harian">
+        </div>
+
+        <!-- SHIFT MODE SALES & CU -->
+        <div id="sales_shift_wrapper">
+            <p style="font-weight: 700; margin-bottom: 8px; font-size: 0.825rem; color: var(--text-main);">Sales Harian Per Shift (Rp)</p>
+            <div class="form-row" style="margin-bottom: 12px;">
+                <div class="item-card">
+                    <div class="shift-label">Shift 1</div>
+                    <input type="number" id="sales_s1" value="0" class="live-calc">
+                </div>
+                <div class="item-card">
+                    <div class="shift-label">Shift 2</div>
+                    <input type="number" id="sales_s2" value="0" class="live-calc">
+                </div>
+            </div>
+        </div>
+
+        <div id="sales_direct_wrapper" style="display: none; margin-bottom: 12px;">
+            <div class="item-card">
+                <label for="sales_direct">Total Sales Harian Langsung (Rp)</label>
+                <input type="number" id="sales_direct" value="0" class="live-calc">
+            </div>
+        </div>
+
+        <div id="cu_shift_wrapper">
+            <p style="font-weight: 700; margin-bottom: 8px; font-size: 0.825rem; color: var(--text-main);">Customer Count (CU) Per Shift</p>
+            <div class="form-row">
+                <div class="item-card">
+                    <div class="shift-label">Shift 1</div>
+                    <input type="number" id="cu_s1" value="0" class="live-calc">
+                </div>
+                <div class="item-card">
+                    <div class="shift-label">Shift 2</div>
+                    <input type="number" id="cu_s2" value="0" class="live-calc">
+                </div>
+            </div>
+        </div>
+
+        <div id="cu_direct_wrapper" style="display: none; margin-bottom: 12px;">
+            <div class="item-card">
+                <label for="cu_direct">Total CU Harian Langsung</label>
+                <input type="number" id="cu_direct" value="0" class="live-calc">
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. MENU BARU -->
+    <div class="card">
+        <h2>🍗 Menu Baru (Jumlah Terjual)</h2>
+        <div id="menuContainer"></div>
+    </div>
+
+    <!-- 4. ECOMMERCE -->
+    <div class="card">
+        <h2>💳 Ecommerce & Non-Tunai (Rp)</h2>
+        <div id="ecommerceContainer"></div>
+    </div>
+
+    <!-- 5. PENGELUARAN -->
+    <div class="card">
+        <h2>💸 Pengeluaran Operasional</h2>
+        <div id="expenseList"></div>
+        <button type="button" class="btn btn-secondary" style="padding: 10px; font-size: 0.85rem; margin-top: 6px;" onclick="addExpenseRow()">+ Tambah Pengeluaran</button>
+    </div>
+
+    <!-- 6. OPERASIONAL LAIN -->
+    <div class="card">
+        <h2>📦 Waste, Cuaca & Tim</h2>
+
+        <p style="font-weight: 700; margin-bottom: 8px; font-size: 0.825rem;">Waste (Sisa Stok)</p>
+        <div class="form-row" style="margin-bottom: 16px; grid-template-columns: 1fr 1fr 1fr;">
+            <div class="item-card">
+                <div class="shift-label">AB (pcs)</div>
+                <input type="number" id="waste_ab" value="0">
+            </div>
+            <div class="item-card">
+                <div class="shift-label">AK (pcs)</div>
+                <input type="number" id="waste_ak" value="0">
+            </div>
+            <div class="item-card">
+                <div class="shift-label">Nasi (porsi)</div>
+                <input type="number" id="waste_nasi" value="0">
+            </div>
+        </div>
+
+        <p style="font-weight: 700; margin-bottom: 8px; font-size: 0.825rem;">Kondisi Cuaca</p>
+        <div class="form-row" style="margin-bottom: 16px; grid-template-columns: 1fr 1fr;">
+            <div class="item-card">
+                <div class="shift-label">Pagi</div>
+                <input type="text" id="cuaca_pagi" value="cerah">
+            </div>
+            <div class="item-card">
+                <div class="shift-label">Siang</div>
+                <input type="text" id="cuaca_siang" value="panas">
+            </div>
+            <div class="item-card">
+                <div class="shift-label">Sore</div>
+                <input type="text" id="cuaca_sore" value="cerah">
+            </div>
+            <div class="item-card">
+                <div class="shift-label">Malam</div>
+                <input type="text" id="cuaca_malam" value="cerah">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="note">Catatan Tambahan (NOTE)</label>
+            <textarea id="note" rows="2" placeholder="Tulis catatan operasional jika ada..."></textarea>
+        </div>
+
+        <p style="font-weight: 700; margin-bottom: 8px; font-size: 0.825rem;">Status Shift Tim Bertugas</p>
+        <div id="timContainer"></div>
+    </div>
+
+    <!-- ACTION BUTTONS -->
+    <div style="display: flex; gap: 10px; margin-top: 14px;">
+        <button id="btn_simpan" class="btn" style="margin-top: 0; flex: 1;" onclick="generateReport(true)" disabled>🚀 Hasilkan & Simpan ke Sheets</button>
+        <button class="btn btn-secondary" style="margin-top: 0; width: 54px; padding: 0; display: flex; justify-content: center; align-items: center; font-size: 1.3rem; flex-shrink: 0;" title="Hanya Hasilkan Teks Laporan (Tanpa Simpan)" onclick="generateReport(false)">📄</button>
+    </div>
+
+    <!-- OUTPUT TERMINAL -->
+    <div class="card" id="outputContainer" style="display: none;">
+        <h2>📝 Hasil Format WhatsApp</h2>
+        <textarea id="output" readonly></textarea>
+        <button class="btn btn-secondary" style="margin-top: 12px;" onclick="copyToClipboard()">📋 Salin Teks Laporan</button>
+    </div>
+</div>
+
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister();
+            }
+        });
+    }
+
+    const SHEETDB_API_ID = "i8z61puqq6cnv"; 
+    const BASE_URL = `https://sheetdb.io/api/v1/${SHEETDB_API_ID}`;
+    const SYS_LICENSE_KEY = "940-838-838-872-957-923";
+
+    /* --- SISTEM NOTIFIKASI TOAST MODERN --- */
+    function showToast(message, type = 'info', title = '') {
+        const container = document.getElementById('toastContainer');
+        const toast = document.createElement('div');
+        toast.className = `toast toast-${type}`;
+
+        let icon = 'ℹ️';
+        if (type === 'success') icon = '✅';
+        else if (type === 'error') icon = '❌';
+        else if (type === 'warning') icon = '⚠️';
+
+        toast.innerHTML = `
+            <div class="toast-icon">${icon}</div>
+            <div class="toast-content">
+                ${title ? `<div class="toast-title">${title}</div>` : ''}
+                <div class="toast-msg">${message}</div>
+            </div>
+        `;
+
+        container.appendChild(toast);
+
+        // Animate in
+        setTimeout(() => toast.classList.add('show'), 10);
+
+        // Auto remove
+        setTimeout(() => {
+            toast.classList.remove('show');
+            setTimeout(() => toast.remove(), 350);
+        }, 4000);
+    }
+
+    /* --- LOGIK PIN & KEYPAD BUILT-IN --- */
+    let currentPin = '';
+
+    function updatePinDots() {
+        const dots = document.querySelectorAll('.pin-dot');
+        dots.forEach((dot, idx) => {
+            if (idx < currentPin.length) {
+                dot.classList.add('filled');
+            } else {
+                dot.classList.remove('filled');
+            }
+        });
+    }
+
+    function pressNum(num) {
+        if (currentPin.length < 6) {
+            currentPin += num;
+            updatePinDots();
+
+            // Otomatis verifikasi jika sudah 6 digit
+            if (currentPin.length === 6) {
+                setTimeout(verifyPin, 120);
+            }
+        }
+    }
+
+    function backspacePin() {
+        if (currentPin.length > 0) {
+            currentPin = currentPin.slice(0, -1);
+            updatePinDots();
+        }
+    }
+
+    function clearPin() {
+        currentPin = '';
+        updatePinDots();
+    }
+
+    // Mendukung input dari keyboard fisik
+    window.addEventListener('keydown', (e) => {
+        const overlay = document.getElementById('pinOverlay');
+        if (overlay && overlay.style.display !== 'none') {
+            if (e.key >= '0' && e.key <= '9') {
+                pressNum(e.key);
+            } else if (e.key === 'Backspace') {
+                backspacePin();
+            } else if (e.key === 'Escape') {
+                clearPin();
+            }
+        }
+    });
+
+    function verifyPin() {
+        if (currentPin.length < 6) return;
+
+        const encoded = currentPin.split('').map(c => c.charCodeAt(0) * 17 + 5).join('-');
+
+        if (encoded === SYS_LICENSE_KEY) {
+            // PIN Benar -> Masuk Sistem
+            document.getElementById('pinOverlay').style.display = 'none';
+            document.body.classList.remove('locked'); // Buka Kunci Scroll
+            showToast('Berhasil Dibuka!', 'success', 'Isi Yang Bener Ya');
+        } else {
+            // PIN Salah -> Vibrasi, Animasi Shake, & Reset
+            if ('vibrate' in navigator) {
+                navigator.vibrate([100, 50, 100]);
+            }
+
+            const pinCard = document.getElementById('pinCard');
+            const dots = document.querySelectorAll('.pin-dot');
+
+            pinCard.classList.add('shake');
+            dots.forEach(d => d.classList.add('error'));
+
+            showToast('Akses Ditolak!', 'error', 'PIN Nya Salah Bujang');
+
+            setTimeout(() => {
+                pinCard.classList.remove('shake');
+                dots.forEach(d => d.classList.remove('error'));
+                clearPin();
+            }, 500);
+        }
+    }
+
+    document.addEventListener('focusin', (e) => {
+        if (e.target.type === 'number' && e.target.value === '0') {
+            e.target.value = '';
+        }
+    });
+
+    document.addEventListener('focusout', (e) => {
+        if (e.target.type === 'number' && e.target.value === '') {
+            e.target.value = '0';
+            calculateLiveTotals();
+        }
+    });
+
+    document.addEventListener('input', (e) => {
+        if (e.target.type === 'number' || e.target.classList.contains('live-calc') || e.target.id === 'sales_s1' || e.target.id === 'sales_s2' || e.target.id === 'sales_direct' || e.target.id === 'cu_s1' || e.target.id === 'cu_s2' || e.target.id === 'cu_direct') {
+            calculateLiveTotals();
+        }
+    });
+
+    function toggleSalesInputMode() {
+        const isDirect = document.getElementById('switch_sales_direct').checked;
+        const shiftWrapper = document.getElementById('sales_shift_wrapper');
+        const directWrapper = document.getElementById('sales_direct_wrapper');
+        const cuShiftWrapper = document.getElementById('cu_shift_wrapper');
+        const cuDirectWrapper = document.getElementById('cu_direct_wrapper');
+
+        if (isDirect) {
+            shiftWrapper.style.display = 'none';
+            directWrapper.style.display = 'block';
+            cuShiftWrapper.style.display = 'none';
+            cuDirectWrapper.style.display = 'block';
+        } else {
+            shiftWrapper.style.display = 'block';
+            directWrapper.style.display = 'none';
+            cuShiftWrapper.style.display = 'block';
+            cuDirectWrapper.style.display = 'none';
+        }
+        calculateLiveTotals();
+    }
+
+    function getSelectedDateDetails() {
+        const dateInput = document.getElementById('tanggal').value;
+        if (!dateInput) return null;
+        const parts = dateInput.split('-');
+        return {
+            dateStr: dateInput,
+            yyyy_mm: `${parts[0]}-${parts[1]}`,
+            dd: parseInt(parts[2], 10)
+        };
+    }
+
+    const menuList = [
+        "Gangnam Jumbo", "Gangnam Hemat", "Gangnam double",
+        "Paket Geprek Hemat Nasi Uduk", "Paket Geprek Jumbo Nasi Uduk",
+        "Paket Crispy Hemat Nasi Uduk", "Paket Crispy Jumbo Nasi Uduk",
+        "Paket Gangnam Hemat Nasi Uduk", "Paket Gangnam Jumbo Nasi Uduk"
+    ];
+
+    const ecommerceList = ["Dana", "Transfer bank", "shoopepay", "shoopefood", "Qris", "Goofood", "Tiktok", "Qpon"];
+    const timList = ["Diana", "Nabila", "Fikri", "Naysyah", "Rinto"];
+
+    let salesKemarin = 0;
+    let cuKemarin = 0;
+
+    document.getElementById('tanggal').valueAsDate = new Date();
+
+    const menuContainer = document.getElementById('menuContainer');
+    menuList.forEach((menu, index) => {
+        menuContainer.innerHTML += `
+            <div class="item-card">
+                <label>${menu}</label>
+                <div class="form-row">
+                    <div><span class="shift-label">Shift 1</span><input type="number" id="menu_${index}_s1" value="0" class="live-calc"></div>
+                    <div><span class="shift-label">Shift 2</span><input type="number" id="menu_${index}_s2" value="0" class="live-calc"></div>
+                </div>
+            </div>`;
+    });
+
+    const ecoContainer = document.getElementById('ecommerceContainer');
+    ecommerceList.forEach((eco, index) => {
+        ecoContainer.innerHTML += `
+            <div class="item-card">
+                <label>${eco}</label>
+                <div class="form-row">
+                    <div><span class="shift-label">Shift 1 (Rp)</span><input type="number" id="eco_${index}_s1" value="0" class="live-calc"></div>
+                    <div><span class="shift-label">Shift 2 (Rp)</span><input type="number" id="eco_${index}_s2" value="0" class="live-calc"></div>
+                </div>
+            </div>`;
+    });
+
+    const timContainer = document.getElementById('timContainer');
+    timList.forEach((nama, index) => {
+        timContainer.innerHTML += `
+            <div class="item-card" style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-weight: 600; font-size: 0.85rem;">${index+1}. ${nama}</span>
+                <select id="tim_${index}" style="width: auto; padding: 6px 10px; font-size: 0.8rem;">
+                    <option value="S1">S1</option><option value="S2">S2</option>
+                    <option value="OFF" selected>OFF</option><option value="BACKUP">BACKUP</option>
+                </select>
+            </div>`;
+    });
+
+    function addExpenseRow() {
+        const list = document.getElementById('expenseList');
+        const row = document.createElement('div');
+        row.className = 'expense-row';
+        row.innerHTML = `
+            <input type="text" placeholder="Jenis Pengeluaran" class="exp-name">
+            <input type="number" placeholder="Nominal (Rp)" class="exp-val" value="0">
+            <button type="button" class="btn btn-danger" onclick="this.parentElement.remove(); calculateLiveTotals();">Hapus</button>`;
+        list.appendChild(row);
+    }
+
+    function toggleTargetLock() {
+        const inputBulanan = document.getElementById('target_bulanan');
+        const inputHarian = document.getElementById('target_harian');
+        const unlockBtn = document.getElementById('unlock_btn');
+        const statusText = document.getElementById('target_status');
+        const isReadonly = inputBulanan.hasAttribute('readonly');
+
+        if (isReadonly) {
+            inputBulanan.removeAttribute('readonly');
+            inputHarian.removeAttribute('readonly');
+            inputBulanan.style.backgroundColor = "var(--input-bg)"; 
+            inputHarian.style.backgroundColor = "var(--input-bg)";
+            unlockBtn.innerText = "🔓";
+            statusText.innerText = "⚠️ Kunci target dibuka paksa secara lokal.";
+            statusText.style.color = "#f59e0b";
+            showToast('Kunci target dibuka paksa.', 'warning', 'Akses Lokal');
+        } else {
+            inputBulanan.setAttribute('readonly', 'true');
+            inputHarian.setAttribute('readonly', 'true');
+            inputBulanan.style.backgroundColor = "#111520";
+            inputHarian.style.backgroundColor = "#111520";
+            unlockBtn.innerText = "🔒";
+            statusText.innerText = "🔒 Target dikunci kembali.";
+            statusText.style.color = "#4ade80";
+            showToast('Target dikunci kembali.', 'info');
+        }
+    }
+
+    function formatRupiah(number) {
+        if (isNaN(number)) return "0";
+        return new Intl.NumberFormat('id-ID').format(number);
+    }
+
+    function calculateLiveTotals() {
+        const isDirect = document.getElementById('switch_sales_direct').checked;
+        let salesS1 = 0; let salesS2 = 0; let cuS1 = 0; let cuS2 = 0;
+
+        if (isDirect) {
+            salesS1 = parseFloat(document.getElementById('sales_direct').value) || 0;
+            cuS1 = parseFloat(document.getElementById('cu_direct').value) || 0;
+        } else {
+            salesS1 = parseFloat(document.getElementById('sales_s1').value) || 0;
+            salesS2 = parseFloat(document.getElementById('sales_s2').value) || 0;
+            cuS1 = parseFloat(document.getElementById('cu_s1').value) || 0;
+            cuS2 = parseFloat(document.getElementById('cu_s2').value) || 0;
+        }
+
+        document.getElementById('total_sales_bulanan_display').value = Math.round(salesKemarin + salesS1 + salesS2);
+        document.getElementById('total_cu_bulanan_display').value = Math.round(cuKemarin + cuS1 + cuS2);
+    }
+
+    function resetFormToDefault(clearTargets = true, resetTotals = true) {
+        if (resetTotals) {
+            salesKemarin = 0;
+            cuKemarin = 0;
+        }
+
+        document.getElementById('switch_sales_direct').checked = false; 
+        toggleSalesInputMode();
+
+        const btnSimpan = document.getElementById('btn_simpan');
+        if (btnSimpan) btnSimpan.disabled = true;
+
+        const loadBtn = document.getElementById('load_btn');
+        if (loadBtn) loadBtn.disabled = false;
+
+        if (clearTargets) {
+            document.getElementById('target_bulanan').value = "";
+            document.getElementById('target_harian').value = "";
+            document.getElementById('target_bulanan').removeAttribute('readonly');
+            document.getElementById('target_harian').removeAttribute('readonly');
+            document.getElementById('target_bulanan').style.backgroundColor = "var(--input-bg)";
+            document.getElementById('target_harian').style.backgroundColor = "var(--input-bg)";
+        }
+
+        document.getElementById('sales_s1').value = 0; 
+        document.getElementById('sales_s2').value = 0;
+        document.getElementById('sales_direct').value = 0;
+        document.getElementById('cu_s1').value = 0; 
+        document.getElementById('cu_s2').value = 0;
+        document.getElementById('cu_direct').value = 0;
+        document.getElementById('note').value = "";
+        document.getElementById('expenseList').innerHTML = "";
+        document.getElementById('waste_ab').value = 0;
+        document.getElementById('waste_ak').value = 0;
+        document.getElementById('waste_nasi').value = 0;
+        document.getElementById('cuaca_pagi').value = "cerah";
+        document.getElementById('cuaca_siang').value = "panas";
+        document.getElementById('cuaca_sore').value = "cerah";
+        document.getElementById('cuaca_malam').value = "cerah";
+
+        menuList.forEach((_, i) => {
+            document.getElementById(`menu_${i}_s1`).value = 0;
+            document.getElementById(`menu_${i}_s2`).value = 0;
+        });
+        ecommerceList.forEach((_, i) => {
+            document.getElementById(`eco_${i}_s1`).value = 0;
+            document.getElementById(`eco_${i}_s2`).value = 0;
+        });
+        timList.forEach((_, i) => {
+            document.getElementById(`tim_${i}`).value = "OFF";
+        });
+        calculateLiveTotals();
+    }
+
+    async function loadDataFromSheets() {
+        const details = getSelectedDateDetails();
+        if (!details) return;
+
+        document.getElementById('loadingOverlay').style.display = 'block';
+
+        try {
+            const targetRes = await fetch(`${BASE_URL}/search?Bulan=${details.yyyy_mm}&sheet=Target`);
+            const targetData = await targetRes.json();
+
+            let targetBulanan = "";
+            let targetHarian = "";
+            if (targetData && targetData.length > 0) {
+                targetBulanan = targetData[0].TargetBulanan || "";
+                targetHarian = targetData[0].TargetHarian || "";
+            }
+
+            const inputBulanan = document.getElementById('target_bulanan');
+            const inputHarian = document.getElementById('target_harian');
+            const statusText = document.getElementById('target_status');
+            const unlockBtn = document.getElementById('unlock_btn');
+
+            inputBulanan.value = targetBulanan;
+            inputHarian.value = targetHarian;
+
+            if (details.dd === 1) {
+                inputBulanan.removeAttribute('readonly');
+                inputHarian.removeAttribute('readonly');
+                inputBulanan.style.backgroundColor = "var(--input-bg)";
+                inputHarian.style.backgroundColor = "var(--input-bg)";
+                statusText.innerText = "✏️ Tanggal 1: Masukkan target bulanan & harian baru.";
+                statusText.style.color = "#4ade80";
+                unlockBtn.style.display = "none";
+            } else {
+                inputBulanan.setAttribute('readonly', 'true');
+                inputHarian.setAttribute('readonly', 'true');
+                inputBulanan.style.backgroundColor = "#111520";
+                inputHarian.style.backgroundColor = "#111520";
+                unlockBtn.style.display = "inline-flex";
+                unlockBtn.innerText = "🔒"; 
+                statusText.innerText = targetBulanan ? "🔒 Target sukses diambil." : "⚠️ Target Belum Diisi!";
+                statusText.style.color = targetBulanan ? "#4ade80" : "#ef4444";
+            }
+
+            const harianRes = await fetch(`${BASE_URL}/search?Bulan=${details.yyyy_mm}&sheet=LaporanHarian`);
+            const harianData = await harianRes.json();
+
+            salesKemarin = 0;
+            cuKemarin = 0;
+            let todayFullData = null;
+
+            if (harianData && Array.isArray(harianData)) {
+                harianData.forEach(row => {
+                    if (row.Tanggal < details.dateStr) {
+                        salesKemarin += parseFloat(row.SalesHarian) || 0;
+                        cuKemarin += parseFloat(row.CuHarian) || 0;
+                    } else if (row.Tanggal === details.dateStr) {
+                        todayFullData = row.FullData;
+                    }
+                });
+            }
+
+            if (todayFullData) {
+                const full = JSON.parse(todayFullData);
+
+                const savedIsDirect = full.is_direct_sales || false;
+                document.getElementById('switch_sales_direct').checked = savedIsDirect;
+                toggleSalesInputMode();
+
+                document.getElementById('sales_s1').value = full.sales_s1 || 0;
+                document.getElementById('sales_s2').value = full.sales_s2 || 0;
+                document.getElementById('cu_s1').value = full.cu_s1 || 0;
+                document.getElementById('cu_s2').value = full.cu_s2 || 0;
+
+                if (savedIsDirect) {
+                    document.getElementById('sales_direct').value = full.sales_direct || 0;
+                    if (full.cu_direct !== undefined && full.cu_direct !== null) {
+                        document.getElementById('cu_direct').value = full.cu_direct;
+                    } else {
+                        document.getElementById('cu_direct').value = (parseFloat(full.cu_s1) || 0) + (parseFloat(full.cu_s2) || 0);
+                    }
+                } else {
+                    document.getElementById('sales_direct').value = (parseFloat(full.sales_s1) || 0) + (parseFloat(full.sales_s2) || 0);
+                    document.getElementById('cu_direct').value = (parseFloat(full.cu_s1) || 0) + (parseFloat(full.cu_s2) || 0);
+                }
+
+                document.getElementById('waste_ab').value = full.waste_ab || 0;
+                document.getElementById('waste_ak').value = full.waste_ak || 0;
+                document.getElementById('waste_nasi').value = full.waste_nasi || 0;
+                document.getElementById('cuaca_pagi').value = full.cuaca_pagi || "cerah";
+                document.getElementById('cuaca_siang').value = full.cuaca_siang || "panas";
+                document.getElementById('cuaca_sore').value = full.cuaca_sore || "cerah";
+                document.getElementById('cuaca_malam').value = full.cuaca_malam || "cerah";
+                document.getElementById('note').value = full.note || "";
+
+                menuList.forEach((_, i) => {
+                    document.getElementById(`menu_${i}_s1`).value = full.menu[i]?.s1 || 0;
+                    document.getElementById(`menu_${i}_s2`).value = full.menu[i]?.s2 || 0;
+                });
+                ecommerceList.forEach((_, i) => {
+                    document.getElementById(`eco_${i}_s1`).value = full.eco[i]?.s1 || 0;
+                    document.getElementById(`eco_${i}_s2`).value = full.eco[i]?.s2 || 0;
+                });
+                timList.forEach((_, i) => {
+                    document.getElementById(`tim_${i}`).value = full.tim[i] || "OFF";
+                });
+
+                const list = document.getElementById('expenseList');
+                list.innerHTML = "";
+                if (full.expenses) {
+                    full.expenses.forEach(exp => {
+                        const row = document.createElement('div');
+                        row.className = 'expense-row';
+                        row.innerHTML = `
+                            <input type="text" class="exp-name" value="${exp.name}">
+                            <input type="number" class="exp-val" value="${exp.val}">
+                            <button type="button" class="btn btn-danger" onclick="this.parentElement.remove(); calculateLiveTotals();">Hapus</button>`;
+                        list.appendChild(row);
+                    });
+                }
+            } else {
+                resetFormToDefault(false, false); 
+            }
+
+            calculateLiveTotals();
+
+            document.getElementById('btn_simpan').disabled = false;
+            document.getElementById('load_btn').disabled = true;
+
+            showToast("Data sukses ditarik dari database! Tombol simpan kini aktif.", "success", "Sinkronisasi Berhasil");
+        } catch (error) {
+            console.error(error);
+            showToast("Gagal memuat data dari SheetDB. Pastikan koneksi internet aktif.", "error", "Gagal Memuat");
+        } finally {
+            document.getElementById('loadingOverlay').style.display = 'none';
+        }
+    }
+
+    document.getElementById('tanggal').addEventListener('change', () => {
+        resetFormToDefault(true, true);
+        document.getElementById('target_status').innerText = "📅 Tanggal diubah. Klik 'Load Data' untuk mengaktifkan tombol simpan.";
+        document.getElementById('target_status').style.color = "#94a3b8";
+        document.getElementById('unlock_btn').style.display = "none";
+    });
+
+    window.addEventListener('load', () => {
+        resetFormToDefault(true, true);
+        document.getElementById('target_status').innerText = "🟢 'Load Data' Dulu Pung";
+    });
+
+    async function saveDataToSheets() {
+        const details = getSelectedDateDetails();
+        if (!details) return;
+
+        document.getElementById('loadingOverlay').style.display = 'block';
+
+        const isDirect = document.getElementById('switch_sales_direct').checked;
+        let salesS1 = 0; let salesS2 = 0; let salesDirectVal = 0;
+        let cuS1 = 0; let cuS2 = 0; let cuDirectVal = 0;
+
+        if (isDirect) {
+            salesDirectVal = parseFloat(document.getElementById('sales_direct').value) || 0;
+            salesS1 = salesDirectVal; salesS2 = 0;
+            cuDirectVal = parseFloat(document.getElementById('cu_direct').value) || 0;
+            cuS1 = cuDirectVal; cuS2 = 0;
+        } else {
+            salesS1 = parseFloat(document.getElementById('sales_s1').value) || 0;
+            salesS2 = parseFloat(document.getElementById('sales_s2').value) || 0;
+            cuS1 = parseFloat(document.getElementById('cu_s1').value) || 0;
+            cuS2 = parseFloat(document.getElementById('cu_s2').value) || 0;
+        }
+
+        const fullDataPayload = {
+            is_direct_sales: isDirect, sales_direct: salesDirectVal, sales_s1: salesS1, sales_s2: salesS2, 
+            cu_direct: cuDirectVal, cu_s1: cuS1, cu_s2: cuS2,
+            waste_ab: document.getElementById('waste_ab').value, waste_ak: document.getElementById('waste_ak').value, waste_nasi: document.getElementById('waste_nasi').value,
+            cuaca_pagi: document.getElementById('cuaca_pagi').value, cuaca_siang: document.getElementById('cuaca_siang').value, cuaca_sore: document.getElementById('cuaca_sore').value, cuaca_malam: document.getElementById('cuaca_malam').value,
+            note: document.getElementById('note').value,
+            menu: menuList.map((_, i) => ({ s1: document.getElementById(`menu_${i}_s1`).value, s2: document.getElementById(`menu_${i}_s2`).value })),
+            eco: ecommerceList.map((_, i) => ({ s1: document.getElementById(`eco_${i}_s1`).value, s2: document.getElementById(`eco_${i}_s2`).value })),
+            tim: timList.map((_, i) => document.getElementById(`tim_${i}`).value),
+            expenses: Array.from(document.getElementsByClassName('expense-row')).map(row => ({
+                name: row.querySelector('.exp-name').value, val: row.querySelector('.exp-val').value
+            }))
+        };
+
+        try {
+            if (details.dd === 1 || !document.getElementById('target_bulanan').hasAttribute('readonly')) {
+                const targetCheck = await fetch(`${BASE_URL}/search?Bulan=${details.yyyy_mm}&sheet=Target`);
+                const targetCheckData = await targetCheck.json();
+
+                const targetPayload = {
+                    Bulan: details.yyyy_mm, TargetBulanan: document.getElementById('target_bulanan').value, TargetHarian: document.getElementById('target_harian').value
+                };
+
+                if (targetCheckData && targetCheckData.length > 0) {
+                    await fetch(`${BASE_URL}/Bulan/${details.yyyy_mm}?sheet=Target`, {
+                        method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ data: targetPayload })
+                    });
+                } else {
+                    await fetch(`${BASE_URL}?sheet=Target`, {
+                        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ data: [targetPayload] })
+                    });
+                }
+            }
+
+            const dailyCheck = await fetch(`${BASE_URL}/search?Tanggal=${details.dateStr}&sheet=LaporanHarian`);
+            const dailyCheckData = await dailyCheck.json();
+
+            const dailyPayload = {
+                Tanggal: details.dateStr, Bulan: details.yyyy_mm, SalesHarian: salesS1 + salesS2, CuHarian: cuS1 + cuS2, FullData: JSON.stringify(fullDataPayload)
+            };
+
+            if (dailyCheckData && dailyCheckData.length > 0) {
+                await fetch(`${BASE_URL}/Tanggal/${details.dateStr}?sheet=LaporanHarian`, {
+                    method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ data: dailyPayload })
+                });
+            } else {
+                await fetch(`${BASE_URL}?sheet=LaporanHarian`, {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ data: [dailyPayload] })
+                });
+            }
+
+            showToast("Data BERHASIL disimpan dan disinkronkan ke Google Sheets!", "success", "Penyimpanan Sukses");
+        } catch (error) {
+            console.error(error);
+            showToast("Gagal menyimpan ke Google Sheets, tetapi teks laporan tetap berhasil dibuat.", "warning", "Peringatan Sync");
+        } finally {
+            document.getElementById('loadingOverlay').style.display = 'none';
+        }
+    }
+
+    function generateReport(shouldSave = true) {
+        const details = getSelectedDateDetails();
+        if (!details) return;
+
+        const totalHariBulanIni = new Date(details.dateStr.split('-')[0], details.dateStr.split('-')[1], 0).getDate();
+        const targetBulanan = parseFloat(document.getElementById('target_bulanan').value) || 0;
+        const totalSalesBulanan = parseFloat(document.getElementById('total_sales_bulanan_display').value) || 0;
+        const totalCuBulanan = parseFloat(document.getElementById('total_cu_bulanan_display').value) || 0;
+
+        const avgOmset = totalSalesBulanan / details.dd;
+        const avgCu = totalCuBulanan / details.dd;
+        const estimasiSalesBulanan = avgOmset * totalHariBulanIni;
+
+        const targetHarian = parseFloat(document.getElementById('target_harian').value) || 0;
+
+        const isDirect = document.getElementById('switch_sales_direct').checked;
+        let salesS1 = 0; let salesS2 = 0; let cuS1 = 0; let cuS2 = 0;
+
+        if (isDirect) {
+            salesS1 = parseFloat(document.getElementById('sales_direct').value) || 0;
+            cuS1 = parseFloat(document.getElementById('cu_direct').value) || 0;
+        } else {
+            salesS1 = parseFloat(document.getElementById('sales_s1').value) || 0;
+            salesS2 = parseFloat(document.getElementById('sales_s2').value) || 0;
+            cuS1 = parseFloat(document.getElementById('cu_s1').value) || 0;
+            cuS2 = parseFloat(document.getElementById('cu_s2').value) || 0;
+        }
+
+        const salesHarian = salesS1 + salesS2;
+        const cuHarian = cuS1 + cuS2;
+        const avgHarian = cuHarian > 0 ? (salesHarian / cuHarian) : 0;
+
+        let reportText = `*LAPORAN SALES GERPEKINAJA H.HANAPI JAKTIM*\n*TGL ${details.dateStr.split('-').reverse().join('/')}*\n\n______________________\n*Laporan Sales Bulanan*\n\n`;
+        reportText += `*-Target Sales Bulanan: Rp. ${formatRupiah(targetBulanan)}*\n`;
+        reportText += `*-Estemasi Sales Bulanan: Rp. ${formatRupiah(Math.round(estimasiSalesBulanan))}*\n`;
+        reportText += `*Total Sales Bulanan: Rp. ${formatRupiah(totalSalesBulanan)}*\n`;
+        reportText += `*-Total CU : ${formatRupiah(totalCuBulanan)}*\n`;
+        reportText += `*-Avg Omset : Rp. ${formatRupiah(Math.round(avgOmset))}*\n`;
+        reportText += `*-Avg CU : ${Math.round(avgCu)}*\n\n______________________\n\n*Laporan Sales Harian:*\n`;
+        reportText += `*-Target Sales Harian: Rp. ${formatRupiah(targetHarian)}*\n`;
+        reportText += `*Sales : Rp. ${formatRupiah(salesHarian)}*\n`;
+        reportText += `*CU      : ${cuHarian}*\n`;
+        reportText += `*Avg    : Rp. ${formatRupiah(Math.round(avgHarian))}*\n_____________________\n\n*MENU BARU*\n`;
+
+        menuList.forEach((menu, i) => {
+            reportText += `- ${menu} : ${(parseFloat(document.getElementById(`menu_${i}_s1`).value)||0) + (parseFloat(document.getElementById(`menu_${i}_s2`).value)||0)} pcs\n`;
+        });
+
+        reportText += `\n*Ecommerce :*\n`;
+        ecommerceList.forEach((eco, i) => {
+            reportText += `*${eco} : Rp. ${formatRupiah((parseFloat(document.getElementById(`eco_${i}_s1`).value)||0) + (parseFloat(document.getElementById(`eco_${i}_s2`).value)||0))}*\n`;
+        });
+
+        reportText += `_____________________\n\n*Pengeluaran:*\n`;
+        let totalPengeluaran = 0;
+        const names = document.getElementsByClassName('exp-name');
+        const vals = document.getElementsByClassName('exp-val');
+        if(names.length === 0) reportText += `- Tidak ada pengeluaran\n`;
+        else {
+            for(let i=0; i<names.length; i++) {
+                let v = parseFloat(vals[i].value)||0; totalPengeluaran += v;
+                reportText += `${i+1}. *${names[i].value.toUpperCase()} : Rp. ${formatRupiah(v)}*\n`;
+            }
+        }
+        reportText += `*Total pengeluaran : Rp. ${formatRupiah(totalPengeluaran)}*\n\nNOTE:\n${document.getElementById('note').value.trim() || "-"}\n___________________\n\n*Waste*\n`;
+        reportText += `*AB : ${document.getElementById('waste_ab').value} pcs*\n*AK : ${document.getElementById('waste_ak').value} pcs*\n*Nasi : ${document.getElementById('waste_nasi').value} porsi*\n_____________________\n\n*Cuaca*\n`;
+        reportText += `*Pagi : ${document.getElementById('cuaca_pagi').value}*\n*Siang : ${document.getElementById('cuaca_siang').value}*\n*Sore : ${document.getElementById('cuaca_sore').value}*\n*Malam : ${document.getElementById('cuaca_malam').value}*\n_____________________\n\n*Tim Bertugas*\n`;
+
+        timList.forEach((nama, i) => { reportText += `${i+1}. ${nama} (${document.getElementById(`tim_${i}`).value})\n`; });
+        reportText += `\nTerima kasih`;
+
+        document.getElementById('output').value = reportText;
+        document.getElementById('outputContainer').style.display = 'block';
+        document.getElementById('outputContainer').scrollIntoView({ behavior: 'smooth' });
+
+        if (shouldSave) {
+            saveDataToSheets();
+        } else {
+            showToast("Laporan berhasil dibuat (Hanya Teks / Tanpa Menyimpan).", "info", "Generasi Teks");
+        }
+    }
+
+    function copyToClipboard() {
+        const out = document.getElementById('output');
+        out.removeAttribute('readonly'); 
+        out.focus(); out.select(); out.setSelectionRange(0, 99999);
+
+        let copiedSuccessful = false;
+        try { copiedSuccessful = document.execCommand('copy'); } catch (err) { copiedSuccessful = false; }
+        out.setAttribute('readonly', 'true');
+
+        if (copiedSuccessful) {
+            showToast("Laporan BERHASIL disalin ke clipboard!", "success", "Salin Teks");
+        } else if (navigator.clipboard) {
+            navigator.clipboard.writeText(out.value)
+                .then(() => showToast("Laporan BERHASIL disalin!", "success", "Salin Teks"))
+                .catch(() => showToast("Gagal menyalin otomatis. Silakan tekan lama teks laporan.", "warning", "Salin Manual"));
+        } else {
+            showToast("Gagal menyalin otomatis. Silakan tekan lama teks laporan.", "warning", "Salin Manual");
+        }
+    }
+</script>
+</body>
+</html>
