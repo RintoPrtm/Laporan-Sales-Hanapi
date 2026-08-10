@@ -206,7 +206,12 @@
         /* FORM ELEMENTS COMPACT */
         .form-group { margin-bottom: 8px; }
         .form-group:last-child { margin-bottom: 0; }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+        .form-row { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 6px; 
+            min-width: 0; 
+        }
 
         label {
             display: block; font-weight: 600; margin-bottom: 3px;
@@ -219,7 +224,9 @@
         }
 
         input[type="text"], input[type="number"], input[type="date"], select, textarea {
-            width: 100%; padding: 5px 8px; border: 1px solid var(--input-border);
+            width: 100%; 
+            max-width: 100%;
+            padding: 5px 8px; border: 1px solid var(--input-border);
             border-radius: var(--radius-sm); font-size: 0.8rem; height: 32px;
             background-color: var(--input-bg); color: var(--text-main);
             transition: all 0.2s ease; font-weight: 600;
@@ -380,10 +387,17 @@
         .toast-msg { font-size: 0.72rem; color: var(--text-muted); line-height: 1.3; }
 
         /* OUTPUT TERMINAL */
-        textarea#output { background: #07090f; color: #38bdf8; font-family: 'Fira Code', monospace; font-size: 0.78rem; line-height: 1.5; height: 240px; resize: vertical; border: 1px solid rgba(56, 189, 248, 0.2); border-radius: var(--radius-sm); padding: 10px; width: 100%; }
+        textarea#output { background: #07090f; color: #38bdf8; font-family: 'Fira Code', monospace; font-size: 0.78rem; line-height: 1.5; height: 240px; resize: vertical; border: 1px solid rgba(56, 189, 248, 0.2); border-radius: var(--radius-sm); padding: 10px; width: 100%; max-width: 100%; }
 
         /* COMPACT ITEM CARD */
-        .item-card { background: rgba(255, 255, 255, 0.015); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 6px 8px; }
+        .item-card { 
+            background: rgba(255, 255, 255, 0.015); 
+            border: 1px solid var(--border); 
+            border-radius: var(--radius-sm); 
+            padding: 6px 8px; 
+            min-width: 0; 
+            overflow: hidden; 
+        }
         .item-card label { font-size: 0.7rem; color: var(--text-main); font-weight: 700; margin-bottom: 4px; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
         /* 2-COLUMN GRID LAYOUT FOR CATEGORIES */
@@ -391,6 +405,7 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 6px;
+            min-width: 0; 
         }
 
         /* SYNC BANNER */
