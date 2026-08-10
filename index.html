@@ -554,7 +554,39 @@
         </div>
 
         <label class="shift-label" style="color: var(--text-main); margin-bottom: 8px; display: block;">STATUS TIM BERTUGAS</label>
-        <div id="timContainer" style="display: grid; gap: 8px;"></div>
+        <div style="display: grid; gap: 10px;">
+            <div class="item-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span class="shift-label" style="color: #fbbf24; margin-bottom: 0;">Shift 1 (S1)</span>
+                    <button type="button" class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.75rem; width: auto;" onclick="addTeamMember('S1')">+ Personel S1</button>
+                </div>
+                <div id="tim_container_S1" style="display: grid; gap: 8px;"></div>
+            </div>
+
+            <div class="item-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span class="shift-label" style="color: #fbbf24; margin-bottom: 0;">Shift 2 (S2)</span>
+                    <button type="button" class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.75rem; width: auto;" onclick="addTeamMember('S2')">+ Personel S2</button>
+                </div>
+                <div id="tim_container_S2" style="display: grid; gap: 8px;"></div>
+            </div>
+
+            <div class="item-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span class="shift-label" style="color: var(--text-muted); margin-bottom: 0;">OFF</span>
+                    <button type="button" class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.75rem; width: auto;" onclick="addTeamMember('OFF')">+ Personel OFF</button>
+                </div>
+                <div id="tim_container_OFF" style="display: grid; gap: 8px;"></div>
+            </div>
+
+            <div class="item-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span class="shift-label" style="color: var(--accent); margin-bottom: 0;">BACKUP</span>
+                    <button type="button" class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.75rem; width: auto;" onclick="addTeamMember('BACKUP')">+ Personel Backup</button>
+                </div>
+                <div id="tim_container_BACKUP" style="display: grid; gap: 8px;"></div>
+            </div>
+        </div>
     </div>
 
     <!-- ACTION BUTTONS UTAMA -->
@@ -661,7 +693,6 @@
 
     const menuList = ["Gangnam Jumbo", "Gangnam Hemat", "Gangnam double", "Paket Geprek Hemat Nasi Uduk", "Paket Geprek Jumbo Nasi Uduk", "Paket Crispy Hemat Nasi Uduk", "Paket Crispy Jumbo Nasi Uduk", "Paket Gangnam Hemat Nasi Uduk", "Paket Gangnam Jumbo Nasi Uduk"];
     const ecommerceList = ["Dana", "Transfer bank", "shoopepay", "shoopefood", "Qris", "Goofood", "Tiktok", "Qpon"];
-    const timList = ["Diana", "Nabila", "Fikri", "Naysyah", "Rinto"];
     let salesKemarin = 0, cuKemarin = 0;
 
     const todayDate = new Date();
@@ -680,10 +711,16 @@
         ecoContainer.innerHTML += `<div class="item-card"><label>${eco}</label><div class="form-row"><div><span class="shift-label">S1</span><input type="number" id="eco_${index}_s1" value="0" class="live-calc"></div><div><span class="shift-label">S2</span><input type="number" id="eco_${index}_s2" value="0" class="live-calc"></div></div></div>`;
     });
 
-    const timContainer = document.getElementById('timContainer');
-    timList.forEach((nama, index) => {
-        timContainer.innerHTML += `<div class="item-card" style="display: flex; justify-content: space-between; align-items: center; padding: 10px 14px;"><span style="font-weight: 600; font-size: 0.85rem;">${index+1}. ${nama}</span><select id="tim_${index}" style="width: auto; padding: 6px 12px; font-size: 0.8rem; font-weight: 700;"><option value="S1">S1</option><option value="S2">S2</option><option value="OFF" selected>OFF</option><option value="BACKUP">BACKUP</option></select></div>`;
-    });
+    function addTeamMember(shift, name = '') {
+        const container = document.getElementById(`tim_container_${shift}`);
+        if (!container) return;
+        const row = document.createElement('div');
+        row.className = 'tim-row';
+        row.setAttribute('data-shift', shift);
+        row.style.cssText = 'display: flex; gap: 8px; align-items: center;';
+        row.innerHTML = `<input type="text" placeholder="Nama Personel" class="tim-name" value="${name}"><button type="button" class="btn btn-danger" onclick="this.parentElement.remove()">✕</button>`;
+        container.appendChild(row);
+    }
 
     function addExpenseRow() {
         const list = document.getElementById('expenseList');
@@ -762,7 +799,8 @@
 
         menuList.forEach((_, i) => { document.getElementById(`menu_${i}_s1`).value = 0; document.getElementById(`menu_${i}_s2`).value = 0; });
         ecommerceList.forEach((_, i) => { document.getElementById(`eco_${i}_s1`).value = 0; document.getElementById(`eco_${i}_s2`).value = 0; });
-        timList.forEach((_, i) => document.getElementById(`tim_${i}`).value = "OFF");
+        
+        ['S1', 'S2', 'OFF', 'BACKUP'].forEach(s => { const c = document.getElementById(`tim_container_${s}`); if (c) c.innerHTML = ''; });
         calculateLiveTotals();
     }
 
@@ -823,7 +861,15 @@
                 
                 menuList.forEach((_, i) => { document.getElementById(`menu_${i}_s1`).value = full.menu[i]?.s1 || 0; document.getElementById(`menu_${i}_s2`).value = full.menu[i]?.s2 || 0; });
                 ecommerceList.forEach((_, i) => { document.getElementById(`eco_${i}_s1`).value = full.eco[i]?.s1 || 0; document.getElementById(`eco_${i}_s2`).value = full.eco[i]?.s2 || 0; });
-                timList.forEach((_, i) => { document.getElementById(`tim_${i}`).value = full.tim[i] || "OFF"; });
+                
+                ['S1', 'S2', 'OFF', 'BACKUP'].forEach(s => { const c = document.getElementById(`tim_container_${s}`); if (c) c.innerHTML = ''; });
+                if (full.tim && Array.isArray(full.tim)) {
+                    full.tim.forEach(item => {
+                        if (typeof item === 'object' && item.name) {
+                            addTeamMember(item.shift || 'OFF', item.name);
+                        }
+                    });
+                }
                 
                 const list = document.getElementById('expenseList'); list.innerHTML = "";
                 if (full.expenses) full.expenses.forEach(exp => {
@@ -871,7 +917,10 @@
             cuaca_pagi: document.getElementById('cuaca_pagi').value, cuaca_siang: document.getElementById('cuaca_siang').value, cuaca_sore: document.getElementById('cuaca_sore').value, cuaca_malam: document.getElementById('cuaca_malam').value, note: document.getElementById('note').value,
             menu: menuList.map((_, i) => ({ s1: document.getElementById(`menu_${i}_s1`).value, s2: document.getElementById(`menu_${i}_s2`).value })),
             eco: ecommerceList.map((_, i) => ({ s1: document.getElementById(`eco_${i}_s1`).value, s2: document.getElementById(`eco_${i}_s2`).value })),
-            tim: timList.map((_, i) => document.getElementById(`tim_${i}`).value),
+            tim: Array.from(document.querySelectorAll('.tim-row')).map(row => ({
+                name: row.querySelector('.tim-name').value.trim(),
+                shift: row.getAttribute('data-shift')
+            })).filter(item => item.name !== ''),
             expenses: Array.from(document.getElementsByClassName('expense-row')).map(row => ({ name: row.querySelector('.exp-name').value, val: row.querySelector('.exp-val').value }))
         };
 
@@ -935,7 +984,24 @@
         r += `*Total pengeluaran : Rp. ${formatRupiah(tPengeluaran)}*\n\nNOTE:\n${document.getElementById('note').value.trim() || "-"}\n___________________\n\n*Waste*\n`;
         r += `*AB : ${document.getElementById('waste_ab').value} pcs*\n*AK : ${document.getElementById('waste_ak').value} pcs*\n*Nasi : ${document.getElementById('waste_nasi').value} porsi*\n_____________________\n\n*Cuaca*\n`;
         r += `*Pagi : ${document.getElementById('cuaca_pagi').value}*\n*Siang : ${document.getElementById('cuaca_siang').value}*\n*Sore : ${document.getElementById('cuaca_sore').value}*\n*Malam : ${document.getElementById('cuaca_malam').value}*\n_____________________\n\n*Tim Bertugas*\n`;
-        timList.forEach((n, i) => r += `${i+1}. ${n} (${document.getElementById(`tim_${i}`).value})\n`); r += `\nTerima kasih`;
+        
+        let timCounter = 1;
+        ['S1', 'S2', 'OFF', 'BACKUP'].forEach(shift => {
+            const container = document.getElementById(`tim_container_${shift}`);
+            if (container) {
+                const inputs = container.querySelectorAll('.tim-name');
+                inputs.forEach(inp => {
+                    const val = inp.value.trim();
+                    if (val) {
+                        r += `${timCounter}. ${val} (${shift})\n`;
+                        timCounter++;
+                    }
+                });
+            }
+        });
+        if (timCounter === 1) r += `- Tidak ada personel bertugas\n`;
+
+        r += `\nTerima kasih`;
 
         document.getElementById('output').value = r; document.getElementById('outputContainer').style.display = 'block'; document.getElementById('outputContainer').scrollIntoView({ behavior: 'smooth' });
         shouldSave ? saveDataToSheets() : showToast("Laporan berhasil dibuat.", "info");
