@@ -507,11 +507,10 @@
         <div style="color: #fbbf24; margin-bottom: 12px; display: flex; justify-content: center;">
             <svg class="icon icon-lg" style="font-size: 3rem;" viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.45 1-1 1H7"/><path d="M14 14.66V17c0 .55.45 1 1 1h2"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>
         </div>
-        <h3 style="color: #fbbf24; font-size: 1.1rem; font-weight: 800; margin-bottom: 6px;">BONUS TARGET TERCAPAI!</h3>
-        <p style="color: var(--text-muted); font-size: 0.78rem; margin-bottom: 18px;" id="congratsMsg">Target sales bulan ini berhasil dicapai.</p>
+        <h3 style="color: #fbbf24; font-size: 1.1rem; font-weight: 800; margin-bottom: 6px;">BONUS CAIR NIH...</h3>
+        <p style="color: var(--text-muted); font-size: 0.78rem; margin-bottom: 18px;" id="congratsMsg">Target sales bulan ini tercapai. </p>
         <button type="button" class="btn" onclick="closeCongratsModal()">
-            <span>Mantap Operasional</span>
-            <svg class="icon" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            <span>Lanjut</span>
         </button>
     </div>
 </div>
@@ -1214,7 +1213,7 @@
         const totalCuBulanan = parseFloat(document.getElementById('total_cu_bulanan_display').value.replace(/\./g, '')) || 0;
 
         if (targetBulanan > 0 && totalSalesBulanan >= targetBulanan) {
-            document.getElementById('congratsMsg').innerHTML = `Target sales bulanan berhasil dicapai (${((totalSalesBulanan / targetBulanan) * 100).toFixed(1)}%)`;
+            document.getElementById('congratsMsg').innerHTML = `Target sales bulanan berhasil tercapai.  (${((totalSalesBulanan / targetBulanan) * 100).toFixed(1)}%)`;
             document.getElementById('congratsModal').style.display = 'flex';
         }
 
