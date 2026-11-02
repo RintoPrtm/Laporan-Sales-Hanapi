@@ -18,30 +18,33 @@
 
     <style>
         :root {
-            --primary: #f59e0b;
-            --primary-hover: #d97706;
-            --primary-dark: #b45309;
+            /* PINK ELEGANT PALETTE */
+            --primary: #ec4899;
+            --primary-hover: #db2777;
+            --primary-dark: #be185d;
+            --primary-light: #f472b6;
+            --primary-glow: rgba(236, 72, 153, 0.35);
             
             --accent: #10b981;
             --accent-dark: #059669;
             
-            /* Modern Dark Theme Palette */
-            --bg: #07090f; 
-            --card-bg: #0f1420;
-            --card-border: rgba(255, 255, 255, 0.07);
-            --input-bg: rgba(255, 255, 255, 0.03);
-            --input-border: rgba(255, 255, 255, 0.08);
+            /* Modern Dark Glam Theme Palette */
+            --bg: #0d070f; 
+            --card-bg: #160e1a;
+            --card-border: rgba(255, 255, 255, 0.08);
+            --input-bg: rgba(255, 255, 255, 0.04);
+            --input-border: rgba(255, 255, 255, 0.12);
             
-            --text-main: #f8fafc;
-            --text-muted: #8b9bb4;
-            --border: rgba(255, 255, 255, 0.06);
+            --text-main: #fcf8fa;
+            --text-muted: #a692a8;
+            --border: rgba(255, 255, 255, 0.08);
             
-            --shadow-subtle: 0 6px 20px rgba(0, 0, 0, 0.35);
+            --shadow-subtle: 0 8px 25px rgba(0, 0, 0, 0.45);
             
-            --radius-sm: 8px;
-            --radius-md: 12px;
-            --radius-lg: 16px;
-            --radius-xl: 20px;
+            --radius-sm: 10px;
+            --radius-md: 14px;
+            --radius-lg: 18px;
+            --radius-xl: 24px;
         }
 
         * {
@@ -80,7 +83,7 @@
         /* CUSTOM SCROLLBAR DARK */
         ::-webkit-scrollbar { width: 5px; height: 5px; }
         ::-webkit-scrollbar-track { background: var(--bg); }
-        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb { background: #2b1830; border-radius: 3px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
 
         body.locked {
@@ -92,11 +95,11 @@
         body {
             background-color: var(--bg);
             background-image: 
-                radial-gradient(circle at 50% 0%, rgba(245, 158, 11, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 10% 90%, rgba(245, 158, 11, 0.04) 0%, transparent 40%);
+                radial-gradient(circle at 50% 0%, rgba(236, 72, 153, 0.12) 0%, transparent 60%),
+                radial-gradient(circle at 10% 90%, rgba(219, 39, 119, 0.06) 0%, transparent 50%);
             background-attachment: fixed;
             color: var(--text-main);
-            padding: 12px 10px 35px 10px;
+            padding: 12px 10px 40px 10px;
             font-size: 13px;
             line-height: 1.4;
             max-width: 480px;
@@ -113,13 +116,13 @@
 
         /* HEADER APP - COMPACT & STICKY ON SCROLL */
         header {
-            background: rgba(13, 21, 34, 0.92);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(245, 158, 11, 0.4);
+            background: rgba(22, 14, 26, 0.94);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(236, 72, 153, 0.35);
             border-radius: var(--radius-md);
             padding: 10px 14px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 15px rgba(245, 158, 11, 0.15);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 20px rgba(236, 72, 153, 0.15);
             position: sticky;
             top: 10px;
             z-index: 1000;
@@ -132,12 +135,12 @@
             font-size: 1.15rem;
             font-weight: 800;
             letter-spacing: -0.3px;
-            color: #fbbf24;
+            color: var(--primary-light);
             display: flex;
             align-items: center;
             gap: 6px;
             margin-bottom: 2px;
-            text-shadow: 0 0 12px rgba(245, 158, 11, 0.3);
+            text-shadow: 0 0 12px var(--primary-glow);
         }
 
         .header-subtitle {
@@ -147,32 +150,32 @@
         }
 
         .header-badge {
-            background: rgba(245, 158, 11, 0.15);
-            border: 1px solid rgba(245, 158, 11, 0.3);
-            color: #fef08a;
+            background: rgba(236, 72, 153, 0.15);
+            border: 1px solid rgba(236, 72, 153, 0.3);
+            color: #fbcfe8;
             font-size: 0.72rem;
             font-weight: 700;
-            padding: 1px 8px;
+            padding: 2px 9px;
             border-radius: 10px;
             letter-spacing: 0.2px;
         }
 
         .load-data-btn {
-            background: rgba(245, 158, 11, 0.18);
-            border: 1px solid rgba(245, 158, 11, 0.4);
-            color: #fbbf24;
-            padding: 6px 12px;
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.25) 0%, rgba(219, 39, 119, 0.35) 100%);
+            border: 1px solid rgba(236, 72, 153, 0.5);
+            color: #fbcfe8;
+            padding: 7px 13px;
             border-radius: 16px;
-            font-size: 0.72rem;
+            font-size: 0.75rem;
             font-weight: 700;
             display: inline-flex;
             align-items: center;
-            gap: 5px;
+            gap: 6px;
             cursor: pointer;
             transition: all 0.2s;
-            box-shadow: 0 3px 10px rgba(245, 158, 11, 0.2);
+            box-shadow: 0 3px 12px rgba(236, 72, 153, 0.25);
         }
-        .load-data-btn:hover:not(:disabled) { background: rgba(245, 158, 11, 0.3); transform: scale(1.03); }
+        .load-data-btn:hover:not(:disabled) { background: rgba(236, 72, 153, 0.4); transform: scale(1.03); }
         .load-data-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
         /* CARD STYLING */
@@ -191,17 +194,17 @@
             letter-spacing: 0.5px; text-transform: uppercase;
         }
         .card h2 .icon {
-            color: #fbbf24;
+            color: var(--primary-light);
             font-size: 1.1rem;
         }
 
         /* CARD KHUSUS INFORMASI PENCAPAIAN */
         .card-info {
-            background: linear-gradient(145deg, #1f170f 0%, #0b101b 100%);
-            border: 1px solid rgba(245, 158, 11, 0.25);
+            background: linear-gradient(145deg, #251025 0%, #130a17 100%);
+            border: 1px solid rgba(236, 72, 153, 0.3);
             box-shadow: 0 8px 24px rgba(0,0,0,0.5);
         }
-        .card-info h2 { color: #fbbf24 !important; }
+        .card-info h2 { color: var(--primary-light) !important; }
 
         /* FORM ELEMENTS COMPACT */
         .form-group { margin-bottom: 8px; }
@@ -226,8 +229,8 @@
         input[type="text"], input[type="number"], input[type="date"], select, textarea {
             width: 100%; 
             max-width: 100%;
-            padding: 5px 8px; border: 1px solid var(--input-border);
-            border-radius: var(--radius-sm); font-size: 0.8rem; height: 32px;
+            padding: 6px 10px; border: 1px solid var(--input-border);
+            border-radius: var(--radius-sm); font-size: 0.85rem; height: 36px;
             background-color: var(--input-bg); color: var(--text-main);
             transition: all 0.2s ease; font-weight: 600;
         }
@@ -235,20 +238,20 @@
         textarea { height: auto; padding: 6px 10px; }
 
         input:focus, select:focus, textarea:focus {
-            outline: none; border-color: var(--accent);
-            box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
-            background-color: rgba(255, 255, 255, 0.05);
+            outline: none; border-color: var(--primary-light);
+            box-shadow: 0 0 0 2px rgba(236, 72, 153, 0.25);
+            background-color: rgba(255, 255, 255, 0.06);
         }
 
         .readonly-field {
             background-color: transparent !important; border-color: transparent !important;
-            font-weight: 800 !important; color: #fbbf24 !important;
-            padding: 0 !important; font-size: 1.1rem !important; height: auto !important;
+            font-weight: 800 !important; color: var(--primary-light) !important;
+            padding: 0 !important; font-size: 1.15rem !important; height: auto !important;
             letter-spacing: -0.3px;
         }
         
         .readonly-field-pink {
-            color: #fbbf24 !important;
+            color: var(--primary-light) !important;
         }
 
         .shift-label {
@@ -260,19 +263,19 @@
         .stat-box-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
 
         .stat-box {
-            background: rgba(255, 255, 255, 0.02); 
+            background: rgba(255, 255, 255, 0.025); 
             border: 1px solid var(--border);
             padding: 10px 12px; border-radius: var(--radius-sm);
             display: flex; flex-direction: column; justify-content: center;
         }
-        .stat-box label { font-size: 0.68rem; color: #cbd5e1; margin-bottom: 2px; font-weight: 700; }
+        .stat-box label { font-size: 0.68rem; color: #e2d5e5; margin-bottom: 2px; font-weight: 700; }
         
         .badge-status {
             display: inline-block; padding: 2px 8px; border-radius: 4px;
             font-size: 0.6rem; font-weight: 800; letter-spacing: 0.4px;
             text-transform: uppercase; margin-top: 4px; width: fit-content;
         }
-        .badge-surplus { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+        .badge-surplus { background: rgba(236, 72, 153, 0.18); color: var(--primary-light); border: 1px solid rgba(236, 72, 153, 0.35); }
 
         /* TOGGLE SWITCH MODERN */
         .switch-container {
@@ -284,39 +287,39 @@
 
         .switch { position: relative; display: inline-block; width: 30px; height: 16px; }
         .switch input { opacity: 0; width: 0; height: 0; }
-        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #334155; transition: .2s; border-radius: 14px; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #3f2a45; transition: .2s; border-radius: 14px; }
         .slider:before { position: absolute; content: ""; height: 12px; width: 12px; left: 2px; bottom: 2px; background-color: white; transition: .2s; border-radius: 50%; }
-        input:checked + .slider { background-color: var(--accent); }
+        input:checked + .slider { background-color: var(--primary); }
         input:checked + .slider:before { transform: translateX(14px); }
 
         /* BUTTONS COMPACT */
         .btn {
             display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-            width: 100%; height: 38px; padding: 6px 14px; 
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            width: 100%; height: 40px; padding: 6px 14px; 
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: white; border: none; border-radius: var(--radius-sm);
             font-size: 0.82rem; font-weight: 700; cursor: pointer; 
             transition: all 0.2s ease;
-            box-shadow: 0 3px 12px rgba(16, 185, 129, 0.25);
+            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.35);
             letter-spacing: 0.2px;
         }
 
-        .btn:hover:not(:disabled) { transform: translateY(-1px); filter: brightness(1.1); box-shadow: 0 4px 15px rgba(16, 185, 129, 0.35); }
+        .btn:hover:not(:disabled) { transform: translateY(-1px); filter: brightness(1.1); box-shadow: 0 6px 18px rgba(236, 72, 153, 0.45); }
         .btn:active:not(:disabled) { transform: translateY(0); }
-        .btn:disabled { background: rgba(255, 255, 255, 0.05) !important; color: #64748b !important; cursor: not-allowed; box-shadow: none !important; }
+        .btn:disabled { background: rgba(255, 255, 255, 0.05) !important; color: #645468 !important; cursor: not-allowed; box-shadow: none !important; }
 
         .btn-secondary { 
             background: rgba(255, 255, 255, 0.05); 
             border: 1px solid var(--border); 
             box-shadow: none; color: var(--text-main); height: 32px; font-size: 0.75rem;
         }
-        .btn-secondary:hover:not(:disabled) { background: rgba(255, 255, 255, 0.09); }
+        .btn-secondary:hover:not(:disabled) { background: rgba(255, 255, 255, 0.1); }
 
         .btn-danger { 
-            background: rgba(244, 63, 94, 0.12); color: #fb7185;
+            background: rgba(244, 63, 94, 0.15); color: #fb7185;
             padding: 2px 6px; font-size: 0.65rem; width: auto; height: 26px;
-            border: 1px solid rgba(244, 63, 94, 0.25); box-shadow: none;
-            border-radius: 4px; display: inline-flex; align-items: center; justify-content: center;
+            border: 1px solid rgba(244, 63, 94, 0.3); box-shadow: none;
+            border-radius: 6px; display: inline-flex; align-items: center; justify-content: center;
         }
         .btn-danger:hover { background: #f43f5e; color: white; }
 
@@ -324,12 +327,12 @@
         .expense-row { 
             display: grid; grid-template-columns: 2fr 1.5fr auto; gap: 6px; 
             margin-bottom: 6px; align-items: center; 
-            background: rgba(0, 0, 0, 0.15); padding: 6px 8px; 
+            background: rgba(0, 0, 0, 0.2); padding: 6px 8px; 
             border-radius: var(--radius-sm); border: 1px solid var(--border); 
         }
 
         /* OVERLAYS & MODALS ENLARGED PIN (PRESISI CENTER KHUSUS MOBILE) */
-        #loadingOverlay { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(7, 9, 15, 0.88); backdrop-filter: blur(8px); color: white; text-align: center; padding-top: 45vh; font-size: 1rem; z-index: 9999; font-weight: 700; }
+        #loadingOverlay { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(13, 7, 15, 0.92); backdrop-filter: blur(10px); color: white; text-align: center; padding-top: 45vh; font-size: 1rem; z-index: 9999; font-weight: 700; }
 
         #pinOverlay { 
             position: fixed; 
@@ -339,7 +342,7 @@
             bottom: 0;
             width: 100vw; 
             height: 100vh; 
-            background: rgba(7, 9, 15, 0.93); 
+            background: rgba(13, 7, 15, 0.94); 
             backdrop-filter: blur(18px); 
             -webkit-backdrop-filter: blur(18px);
             display: flex; 
@@ -350,23 +353,23 @@
         }
         
         .pin-box { 
-            background: #0f1420; 
+            background: #160e1a; 
             padding: 28px 20px; 
             border-radius: var(--radius-xl); 
             box-shadow: 0 24px 50px rgba(0, 0, 0, 0.85); 
-            border: 1px solid rgba(245, 158, 11, 0.2); 
+            border: 1px solid rgba(236, 72, 153, 0.25); 
             width: 100%; 
             max-width: 340px; 
             text-align: center; 
             margin: auto;
         }
-        .pin-icon { width: 56px; height: 56px; background: rgba(245, 158, 11, 0.15); color: #fbbf24; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px auto; border: 1px solid rgba(245, 158, 11, 0.3); box-shadow: 0 0 20px rgba(245, 158, 11, 0.2); }
+        .pin-icon { width: 56px; height: 56px; background: rgba(236, 72, 153, 0.15); color: var(--primary-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px auto; border: 1px solid rgba(236, 72, 153, 0.35); box-shadow: 0 0 20px rgba(236, 72, 153, 0.25); }
         .pin-title { color: var(--text-main); font-size: 1.15rem; font-weight: 800; margin-bottom: 4px; }
         .pin-subtitle { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 20px; }
         
         .pin-dots { display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 20px; }
         .pin-dot { width: 13px; height: 13px; border-radius: 50%; border: 2px solid rgba(255, 255, 255, 0.2); background: transparent; transition: all 0.2s; }
-        .pin-dot.filled { background: var(--primary); border-color: var(--primary); box-shadow: 0 0 10px rgba(245, 158, 11, 0.6); transform: scale(1.1); }
+        .pin-dot.filled { background: var(--primary); border-color: var(--primary); box-shadow: 0 0 10px rgba(236, 72, 153, 0.8); transform: scale(1.1); }
         .pin-dot.error { background: #f43f5e; border-color: #881337; }
         
         .numpad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-width: 280px; margin: 0 auto; }
@@ -379,7 +382,7 @@
 
         /* TOAST NOTIFICATION */
         #toastContainer { position: fixed; top: 12px; right: 12px; z-index: 20000; display: flex; flex-direction: column; gap: 6px; max-width: 320px; width: calc(100% - 24px); pointer-events: none; }
-        .toast { pointer-events: auto; background: #0f1420; backdrop-filter: blur(10px); border: 1px solid var(--border); padding: 10px 12px; border-radius: var(--radius-sm); box-shadow: 0 8px 24px rgba(0,0,0,0.5); display: flex; align-items: flex-start; gap: 10px; transform: translateX(120%); opacity: 0; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .toast { pointer-events: auto; background: #160e1a; backdrop-filter: blur(10px); border: 1px solid var(--border); padding: 10px 12px; border-radius: var(--radius-sm); box-shadow: 0 8px 24px rgba(0,0,0,0.5); display: flex; align-items: flex-start; gap: 10px; transform: translateX(120%); opacity: 0; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
         .toast.show { transform: translateX(0); opacity: 1; }
         .toast-icon { font-size: 1.1rem; line-height: 1; display: flex; align-items: center; }
         .toast-content { flex: 1; }
@@ -387,11 +390,11 @@
         .toast-msg { font-size: 0.72rem; color: var(--text-muted); line-height: 1.3; }
 
         /* OUTPUT TERMINAL */
-        textarea#output { background: #07090f; color: #38bdf8; font-family: 'Fira Code', monospace; font-size: 0.78rem; line-height: 1.5; height: 240px; resize: vertical; border: 1px solid rgba(56, 189, 248, 0.2); border-radius: var(--radius-sm); padding: 10px; width: 100%; max-width: 100%; }
+        textarea#output { background: #070408; color: #f472b6; font-family: 'Fira Code', monospace; font-size: 0.78rem; line-height: 1.5; height: 240px; resize: vertical; border: 1px solid rgba(236, 72, 153, 0.3); border-radius: var(--radius-sm); padding: 10px; width: 100%; max-width: 100%; }
 
         /* COMPACT ITEM CARD */
         .item-card { 
-            background: rgba(255, 255, 255, 0.015); 
+            background: rgba(255, 255, 255, 0.02); 
             border: 1px solid var(--border); 
             border-radius: var(--radius-sm); 
             padding: 6px 8px; 
@@ -408,24 +411,50 @@
             min-width: 0; 
         }
 
-        /* SYNC BANNER */
-        .sync-banner { background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.08); padding: 6px 10px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; text-align: center; margin-bottom: 8px; }
-        .sync-status { font-size: 0.72rem; font-weight: 600; color: var(--text-muted); }
+        /* SYNC BANNER & MENCOLOK ALERT */
+        .sync-banner { 
+            background: rgba(255,255,255,0.02); 
+            border: 1px dashed rgba(255,255,255,0.1); 
+            padding: 8px 12px; 
+            border-radius: var(--radius-sm); 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            text-align: center; 
+            margin-bottom: 8px; 
+            transition: all 0.3s ease;
+        }
+        .sync-status { font-size: 0.74rem; font-weight: 700; color: var(--text-muted); }
+
+        /* ALERT MENCOLOK BILA BELUM LOAD DATA / TARGET KOSONG */
+        @keyframes pulseAlert {
+            0%, 100% { border-color: rgba(244, 63, 94, 0.8); box-shadow: 0 0 12px rgba(244, 63, 94, 0.3); }
+            50% { border-color: rgba(244, 63, 94, 0.3); box-shadow: none; }
+        }
+        .sync-banner.alert-warning {
+            background: rgba(244, 63, 94, 0.12) !important;
+            border: 1.5px solid rgba(244, 63, 94, 0.7) !important;
+            animation: pulseAlert 2s infinite ease-in-out;
+        }
+        .sync-banner.alert-warning .sync-status {
+            color: #fb7185 !important;
+            font-weight: 800;
+        }
 
         /* MILESTONE BOX - ENLARGED & HIGH VISIBILITY */
         .milestone-box { 
             background: rgba(0, 0, 0, 0.35); 
-            border: 1px solid rgba(245, 158, 11, 0.4); 
+            border: 1px solid rgba(236, 72, 153, 0.35); 
             border-radius: var(--radius-md); 
             padding: 14px 16px; 
             margin-top: 12px; 
             display: block; 
-            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(245, 158, 11, 0.05);
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(236, 72, 153, 0.08);
         }
         .milestone-title { 
             font-size: 0.82rem; 
             font-weight: 800; 
-            color: #fbbf24; 
+            color: var(--primary-light); 
             margin-bottom: 8px; 
             display: flex; 
             justify-content: space-between; 
@@ -443,18 +472,23 @@
             box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6);
         }
         .milestone-progress-bar { 
-            background: linear-gradient(90deg, #f59e0b 0%, #fef08a 100%); 
+            background: linear-gradient(90deg, #ec4899 0%, #fbcfe8 100%); 
             height: 100%; 
             width: 0%; 
             border-radius: 12px; 
             transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1); 
-            box-shadow: 0 0 12px rgba(245, 158, 11, 0.8);
+            box-shadow: 0 0 14px rgba(236, 72, 153, 0.9);
         }
         .milestone-text { 
             font-size: 0.75rem; 
             font-weight: 700;
             color: var(--text-muted); 
             text-align: right; 
+        }
+
+        input[readonly] {
+            cursor: not-allowed;
+            opacity: 0.85;
         }
     </style>
 </head>
@@ -497,17 +531,17 @@
 
 <div id="loadingOverlay">
     <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
-        <svg class="icon icon-spin icon-lg" style="color: #fbbf24; font-size: 2rem;" viewBox="0 0 24 24"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+        <svg class="icon icon-spin icon-lg" style="color: var(--primary-light); font-size: 2rem;" viewBox="0 0 24 24"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
         <span>Memuat Data Sheets...</span>
     </div>
 </div>
 
-<div id="congratsModal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(7, 9, 15, 0.9); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); z-index: 25000; justify-content: center; align-items: center; padding: 16px;">
-    <div class="congrats-card" style="background: #0f1420; padding: 28px 20px; border-radius: var(--radius-xl); border: 1px solid rgba(245, 158, 11, 0.3); text-align: center; max-width: 320px; width: 100%;">
-        <div style="color: #fbbf24; margin-bottom: 12px; display: flex; justify-content: center;">
+<div id="congratsModal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(13, 7, 15, 0.92); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); z-index: 25000; justify-content: center; align-items: center; padding: 16px;">
+    <div class="congrats-card" style="background: #160e1a; padding: 28px 20px; border-radius: var(--radius-xl); border: 1px solid rgba(236, 72, 153, 0.4); text-align: center; max-width: 320px; width: 100%;">
+        <div style="color: var(--primary-light); margin-bottom: 12px; display: flex; justify-content: center;">
             <svg class="icon icon-lg" style="font-size: 3rem;" viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.45 1-1 1H7"/><path d="M14 14.66V17c0 .55.45 1 1 1h2"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>
         </div>
-        <h3 style="color: #fbbf24; font-size: 1.1rem; font-weight: 800; margin-bottom: 6px;">BONUS CAIR NIH...</h3>
+        <h3 style="color: var(--primary-light); font-size: 1.1rem; font-weight: 800; margin-bottom: 6px;">BONUS CAIR NIH...</h3>
         <p style="color: var(--text-muted); font-size: 0.78rem; margin-bottom: 18px;" id="congratsMsg">Target sales bulan ini tercapai. </p>
         <button type="button" class="btn" onclick="closeCongratsModal()">
             <span>Lanjut</span>
@@ -520,7 +554,7 @@
     <header>
         <div class="header-left">
             <h1>
-                <svg class="icon icon-lg" style="color: #fbbf24;" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <svg class="icon icon-lg" style="color: var(--primary-light);" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
                 GEPREKINAJA
             </h1>
             <div class="header-subtitle">
@@ -540,7 +574,7 @@
                 <svg class="icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                 Periode & Target Bulanan
             </h2>
-            <button type="button" id="unlock_btn" class="btn btn-secondary" style="display: none; width: 32px; height: 32px; padding: 0; justify-content: center; align-items: center; font-size: 0.8rem; flex-shrink: 0; border-radius: 8px;" onclick="toggleTargetLock()" title="Buka Kunci">
+            <button type="button" id="unlock_btn" class="btn btn-secondary" style="display: none; width: 32px; height: 32px; padding: 0; justify-content: center; align-items: center; font-size: 0.8rem; flex-shrink: 0; border-radius: 8px;" onclick="toggleTargetLock()" title="Buka Kunci Target Bulanan">
                 <svg class="icon" id="unlock_icon" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
             </button>
         </div>
@@ -550,8 +584,8 @@
             <input type="date" id="tanggal" required>
         </div>
 
-        <div class="sync-banner">
-            <span id="target_status" class="sync-status">Pilih tanggal & klik Load Data di atas.</span>
+        <div class="sync-banner alert-warning" id="syncBanner">
+            <span id="target_status" class="sync-status">⚠️ PERINGATAN: Belum Load Data! Klik tombol 'Load Data' di atas.</span>
         </div>
 
         <div class="form-row">
@@ -561,7 +595,7 @@
             </div>
             <div class="form-group">
                 <label for="target_harian">Target Harian (Rp)</label>
-                <input type="number" id="target_harian" placeholder="Cth: 2000000">
+                <input type="number" id="target_harian" placeholder="Otomatis" readonly title="Dikunci: Otomatis membagi Target Bulanan dengan jumlah hari">
             </div>
         </div>
     </div>
@@ -621,7 +655,7 @@
         <div id="sales_shift_wrapper">
             <div class="grid-2-col">
                 <div class="item-card">
-                    <label style="color: var(--primary);">TOTAL SALES (Rp)</label>
+                    <label style="color: var(--primary-light);">TOTAL SALES (Rp)</label>
                     <div class="form-row">
                         <div>
                             <span class="shift-label">Shift 1</span>
@@ -654,7 +688,7 @@
         <div id="sales_direct_wrapper" style="display: none;">
             <div class="grid-2-col">
                 <div class="item-card">
-                    <label for="sales_direct" style="color: var(--primary);">SALES LANGSUNG (Rp)</label>
+                    <label for="sales_direct" style="color: var(--primary-light);">SALES LANGSUNG (Rp)</label>
                     <input type="number" id="sales_direct" value="0" class="live-calc">
                 </div>
                 <div class="item-card">
@@ -733,7 +767,7 @@
         <div class="grid-2-col">
             <div class="item-card">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-                    <span class="shift-label" style="color: #fbbf24; margin-bottom: 0;">Shift 1 (S1)</span>
+                    <span class="shift-label" style="color: var(--primary-light); margin-bottom: 0;">Shift 1 (S1)</span>
                     <button type="button" class="btn btn-secondary" style="padding: 1px 6px; height: 22px; font-size: 0.65rem; width: auto;" onclick="addTeamMember('S1')">+ Personel</button>
                 </div>
                 <div id="tim_container_S1" style="display: grid; gap: 4px;"></div>
@@ -741,15 +775,15 @@
 
             <div class="item-card">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-                    <span class="shift-label" style="color: #fbbf24; margin-bottom: 0;">Shift 2 (S2)</span>
+                    <span class="shift-label" style="color: var(--primary-light); margin-bottom: 0;">Shift 2 (S2)</span>
                     <button type="button" class="btn btn-secondary" style="padding: 1px 6px; height: 22px; font-size: 0.65rem; width: auto;" onclick="addTeamMember('S2')">+ Personel</button>
                 </div>
                 <div id="tim_container_S2" style="display: grid; gap: 4px;"></div>
             </div>
 
-          <div class="item-card">
+            <div class="item-card">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-                    <span class="shift-label" style="color: #24acfb; margin-bottom: 0;">MIDLE</span>
+                    <span class="shift-label" style="color: #38bdf8; margin-bottom: 0;">MIDLE</span>
                     <button type="button" class="btn btn-secondary" style="padding: 1px 6px; height: 22px; font-size: 0.65rem; width: auto;" onclick="addTeamMember('MID')">+ Personel</button>
                 </div>
                 <div id="tim_container_MID" style="display: grid; gap: 4px;"></div>
@@ -808,13 +842,14 @@
     const SHEETDB_API_ID = "i8z61puqq6cnv"; 
     const BASE_URL = `https://sheetdb.io/api/v1/${SHEETDB_API_ID}`;
     const SYS_LICENSE_KEY = "940-838-838-872-957-923";
+    let isDataLoaded = false;
 
     /* SVGs FOR TOAST NOTIFICATIONS */
     const svgIcons = {
         success: `<svg class="icon" style="color: #10b981;" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>`,
         error: `<svg class="icon" style="color: #f43f5e;" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>`,
-        warning: `<svg class="icon" style="color: #f59e0b;" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`,
-        info: `<svg class="icon" style="color: #38bdf8;" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>`
+        warning: `<svg class="icon" style="color: #ec4899;" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`,
+        info: `<svg class="icon" style="color: #38bdf8;" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12.01" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>`
     };
 
     function showToast(message, type = 'info', title = '') {
@@ -827,6 +862,30 @@
         setTimeout(() => toast.classList.add('show'), 10);
         setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 300); }, 3500);
     }
+
+    /* FITUR CEK KARAKTER TITIK & BLOKIR INPUT TITIK */
+    function sanitizeNumberInput(el) {
+        if (!el) return;
+        let val = el.value;
+        if (typeof val === 'string' && (val.includes('.') || val.includes(','))) {
+            el.value = val.replace(/[\.,]/g, '');
+        }
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.target.type === 'number' || e.target.classList.contains('live-calc') || e.target.id === 'target_bulanan') {
+            if (e.key === '.' || e.key === ',') {
+                e.preventDefault();
+            }
+        }
+    });
+
+    document.addEventListener('input', (e) => {
+        if (e.target.type === 'number' || e.target.classList.contains('live-calc') || e.target.id === 'target_bulanan') {
+            sanitizeNumberInput(e.target);
+            calculateLiveTotals();
+        }
+    });
 
     let currentPin = '';
     function updatePinDots() {
@@ -873,9 +932,11 @@
     function closeCongratsModal() { document.getElementById('congratsModal').style.display = 'none'; }
 
     document.addEventListener('focusin', (e) => { if (e.target.type === 'number' && e.target.value === '0') e.target.value = ''; });
-    document.addEventListener('focusout', (e) => { if (e.target.type === 'number' && e.target.value === '') { e.target.value = '0'; calculateLiveTotals(); } });
-    document.addEventListener('input', (e) => {
-        if (e.target.type === 'number' || e.target.classList.contains('live-calc') || ['sales_s1','sales_s2','sales_direct','cu_s1','cu_s2','cu_direct','target_bulanan'].includes(e.target.id)) calculateLiveTotals();
+    document.addEventListener('focusout', (e) => { 
+        if (e.target.type === 'number' && e.target.value === '') { 
+            e.target.value = '0'; 
+            calculateLiveTotals(); 
+        } 
     });
 
     function toggleSalesInputMode() {
@@ -889,7 +950,7 @@
         const dateInput = document.getElementById('tanggal').value;
         if (!dateInput) return null;
         const parts = dateInput.split('-');
-        return { dateStr: dateInput, yyyy_mm: `${parts[0]}-${parts[1]}`, dd: parseInt(parts[2], 10) };
+        return { dateStr: dateInput, yyyy_mm: `${parts[0]}-${parts[1]}`, dd: parseInt(parts[2], 10), year: parseInt(parts[0], 10), month: parseInt(parts[1], 10) };
     }
 
     const menuList = ["Gangnam Jumbo", "Gangnam Hemat", "Gangnam double", "Paket Geprek Hemat Nasi Uduk", "Paket Geprek Jumbo Nasi Uduk", "Paket Crispy Hemat Nasi Uduk", "Paket Crispy Jumbo Nasi Uduk", "Paket Gangnam Hemat Nasi Uduk", "Paket Gangnam Jumbo Nasi Uduk"];
@@ -978,29 +1039,57 @@
 
     function toggleTargetLock() {
         const inputBulanan = document.getElementById('target_bulanan');
-        const inputHarian = document.getElementById('target_harian');
         const unlockBtn = document.getElementById('unlock_btn');
-        const statusText = document.getElementById('target_status');
         
         if (inputBulanan.hasAttribute('readonly')) {
-            inputBulanan.removeAttribute('readonly'); inputHarian.removeAttribute('readonly');
-            inputBulanan.style.backgroundColor = "var(--input-bg)"; inputHarian.style.backgroundColor = "var(--input-bg)";
+            inputBulanan.removeAttribute('readonly');
+            inputBulanan.style.backgroundColor = "var(--input-bg)";
             unlockBtn.innerHTML = `<svg class="icon" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>`; 
-            statusText.innerText = "Kunci target dibuka paksa.";
-            statusText.style.color = "#f59e0b"; showToast('Kunci target dibuka.', 'warning');
+            showToast('Kunci Target Bulanan dibuka.', 'warning');
         } else {
-            inputBulanan.setAttribute('readonly', 'true'); inputHarian.setAttribute('readonly', 'true');
-            inputBulanan.style.backgroundColor = "transparent"; inputHarian.style.backgroundColor = "transparent";
+            inputBulanan.setAttribute('readonly', 'true');
+            inputBulanan.style.backgroundColor = "transparent";
             unlockBtn.innerHTML = `<svg class="icon" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`; 
-            statusText.innerText = "Target dikunci kembali.";
-            statusText.style.color = "#fbbf24"; showToast('Target dikunci kembali.', 'info');
+            showToast('Target Bulanan dikunci kembali.', 'info');
         }
+        updateStatusWarningBanner();
     }
 
     function formatRupiah(number) { return isNaN(number) ? "0" : new Intl.NumberFormat('id-ID').format(number); }
 
-    /* CALCULATE LOGIC - MILESTONE SELALU TAMPIL */
+    /* SINKRONISASI UPDATE STATUS BANNER MENCOLOK BILA BELUM LOAD DATA / TARGET BELUM TERISI */
+    function updateStatusWarningBanner() {
+        const syncBanner = document.getElementById('syncBanner');
+        const statusText = document.getElementById('target_status');
+        const targetBulanan = parseFloat(document.getElementById('target_bulanan').value) || 0;
+
+        if (!isDataLoaded) {
+            syncBanner.className = "sync-banner alert-warning";
+            statusText.innerText = "⚠️ PERINGATAN: Belum Load Data! Klik 'Load Data' di atas.";
+        } else if (targetBulanan <= 0) {
+            syncBanner.className = "sync-banner alert-warning";
+            statusText.innerText = "🚨 PERINGATAN: Target Sales Bulanan Belum Terisi!";
+        } else {
+            syncBanner.className = "sync-banner";
+            statusText.innerText = "✅ Target & Data sukses dimuat.";
+            statusText.style.color = "var(--primary-light)";
+        }
+    }
+
+    /* CALCULATE LOGIC + AUTOMATIC DAILY TARGET CALCULATION */
     function calculateLiveTotals() {
+        const details = getSelectedDateDetails();
+        const targetBulanan = parseFloat(document.getElementById('target_bulanan').value) || 0;
+        
+        // HITUNG OTOMATIS TARGET HARIAN (BAGI JUMLAH HARI PADA BULAN INI)
+        if (details && targetBulanan > 0) {
+            const daysInMonth = new Date(details.year, details.month, 0).getDate();
+            const calcTargetHarian = Math.round(targetBulanan / daysInMonth);
+            document.getElementById('target_harian').value = calcTargetHarian;
+        } else {
+            document.getElementById('target_harian').value = 0;
+        }
+
         const isDirect = document.getElementById('switch_sales_direct').checked;
         let salesS1 = isDirect ? (parseFloat(document.getElementById('sales_direct').value) || 0) : (parseFloat(document.getElementById('sales_s1').value) || 0);
         let salesS2 = isDirect ? 0 : (parseFloat(document.getElementById('sales_s2').value) || 0);
@@ -1013,7 +1102,6 @@
         document.getElementById('total_sales_bulanan_display').value = formatRupiah(totalSalesBulanan);
         document.getElementById('total_cu_bulanan_display').value = formatRupiah(totalCuBulanan);
 
-        const targetBulanan = parseFloat(document.getElementById('target_bulanan').value) || 0;
         const milestoneBar = document.getElementById('milestoneBar');
         const milestonePctText = document.getElementById('milestonePctText');
         const milestoneText = document.getElementById('milestoneText');
@@ -1028,7 +1116,7 @@
                 milestoneText.style.color = 'var(--text-muted)';
             } else if (percentage >= 100) { 
                 milestoneText.innerHTML = `Target Bulanan <b>TERCAPAI!</b>`; 
-                milestoneText.style.color = '#fbbf24'; 
+                milestoneText.style.color = 'var(--primary-light)'; 
             } else { 
                 milestoneText.innerHTML = `Kurang: Rp ${formatRupiah(targetBulanan - totalSalesBulanan)}`; 
                 milestoneText.style.color = 'var(--text-muted)'; 
@@ -1039,10 +1127,13 @@
             milestoneText.innerHTML = `Belum ada data sales`;
             milestoneText.style.color = 'var(--text-muted)';
         }
+
+        updateStatusWarningBanner();
     }
 
     function resetFormToDefault(clearTargets = true, resetTotals = true) {
         if (resetTotals) { salesKemarin = 0; cuKemarin = 0; }
+        isDataLoaded = false;
         document.getElementById('switch_sales_direct').checked = false; toggleSalesInputMode();
         
         if(document.getElementById('btn_simpan')) document.getElementById('btn_simpan').disabled = true;
@@ -1050,8 +1141,8 @@
 
         if (clearTargets) {
             document.getElementById('target_bulanan').value = ""; document.getElementById('target_harian').value = "";
-            document.getElementById('target_bulanan').removeAttribute('readonly'); document.getElementById('target_harian').removeAttribute('readonly');
-            document.getElementById('target_bulanan').style.backgroundColor = "var(--input-bg)"; document.getElementById('target_harian').style.backgroundColor = "var(--input-bg)";
+            document.getElementById('target_bulanan').removeAttribute('readonly');
+            document.getElementById('target_bulanan').style.backgroundColor = "var(--input-bg)";
         }
         
         ['sales_s1','sales_s2','sales_direct','cu_s1','cu_s2','cu_direct','waste_ab','waste_ak','waste_nasi'].forEach(id => document.getElementById(id).value = 0);
@@ -1062,7 +1153,7 @@
         menuList.forEach((_, i) => { document.getElementById(`menu_${i}_s1`).value = 0; document.getElementById(`menu_${i}_s2`).value = 0; });
         ecommerceList.forEach((_, i) => { document.getElementById(`eco_${i}_s1`).value = 0; document.getElementById(`eco_${i}_s2`).value = 0; });
         
-        ['S1', 'S2', 'OFF', 'BACKUP'].forEach(s => { const c = document.getElementById(`tim_container_${s}`); if (c) c.innerHTML = ''; });
+        ['S1', 'S2', 'MID', 'OFF', 'BACKUP'].forEach(s => { const c = document.getElementById(`tim_container_${s}`); if (c) c.innerHTML = ''; });
         calculateLiveTotals();
     }
 
@@ -1074,23 +1165,20 @@
             const targetRes = await fetch(`${BASE_URL}/search?Bulan=${details.yyyy_mm}&sheet=Target`);
             const targetData = await targetRes.json();
             
-            const inputBulanan = document.getElementById('target_bulanan'); const inputHarian = document.getElementById('target_harian');
+            const inputBulanan = document.getElementById('target_bulanan'); 
             inputBulanan.value = (targetData && targetData.length > 0) ? targetData[0].TargetBulanan : "";
-            inputHarian.value = (targetData && targetData.length > 0) ? targetData[0].TargetHarian : "";
             
-            const statusText = document.getElementById('target_status'); const unlockBtn = document.getElementById('unlock_btn');
+            const unlockBtn = document.getElementById('unlock_btn');
             
             if (details.dd === 1) {
-                inputBulanan.removeAttribute('readonly'); inputHarian.removeAttribute('readonly');
-                inputBulanan.style.backgroundColor = "var(--input-bg)"; inputHarian.style.backgroundColor = "var(--input-bg)";
-                statusText.innerText = "Tanggal 1: Masukkan target baru."; statusText.style.color = "#fbbf24"; unlockBtn.style.display = "none";
+                inputBulanan.removeAttribute('readonly'); 
+                inputBulanan.style.backgroundColor = "var(--input-bg)"; 
+                unlockBtn.style.display = "none";
             } else {
-                inputBulanan.setAttribute('readonly', 'true'); inputHarian.setAttribute('readonly', 'true');
-                inputBulanan.style.backgroundColor = "transparent"; inputHarian.style.backgroundColor = "transparent";
+                inputBulanan.setAttribute('readonly', 'true'); 
+                inputBulanan.style.backgroundColor = "transparent"; 
                 unlockBtn.style.display = "inline-flex"; 
                 unlockBtn.innerHTML = `<svg class="icon" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`;
-                statusText.innerText = inputBulanan.value ? "Target sukses dimuat." : "Target Belum Diisi!";
-                statusText.style.color = inputBulanan.value ? "#fbbf24" : "#f43f5e";
             }
 
             const harianRes = await fetch(`${BASE_URL}/search?Bulan=${details.yyyy_mm}&sheet=LaporanHarian`);
@@ -1125,7 +1213,7 @@
                 menuList.forEach((_, i) => { document.getElementById(`menu_${i}_s1`).value = full.menu[i]?.s1 || 0; document.getElementById(`menu_${i}_s2`).value = full.menu[i]?.s2 || 0; });
                 ecommerceList.forEach((_, i) => { document.getElementById(`eco_${i}_s1`).value = full.eco[i]?.s1 || 0; document.getElementById(`eco_${i}_s2`).value = full.eco[i]?.s2 || 0; });
                 
-                ['S1', 'S2', 'OFF', 'BACKUP'].forEach(s => { const c = document.getElementById(`tim_container_${s}`); if (c) c.innerHTML = ''; });
+                ['S1', 'S2', 'MID', 'OFF', 'BACKUP'].forEach(s => { const c = document.getElementById(`tim_container_${s}`); if (c) c.innerHTML = ''; });
                 if (full.tim && Array.isArray(full.tim)) {
                     full.tim.forEach(item => {
                         if (typeof item === 'object' && item.name) {
@@ -1145,6 +1233,7 @@
                 });
             } else { resetFormToDefault(false, false); }
 
+            isDataLoaded = true;
             calculateLiveTotals();
             document.getElementById('btn_simpan').disabled = false; document.getElementById('load_btn').disabled = true;
             showToast("Data sukses dimuat.", "success");
@@ -1154,7 +1243,6 @@
 
     document.getElementById('tanggal').addEventListener('change', () => {
         resetFormToDefault(true, true);
-        const st = document.getElementById('target_status'); st.innerText = "Tanggal diubah. Klik 'Load Data'."; st.style.color = "var(--text-muted)";
         document.getElementById('unlock_btn').style.display = "none";
     });
 
